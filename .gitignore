@@ -1,0 +1,12 @@
+Debug
+Release
+*.sdf
+*.sln
+*.suo
+*.vcxproj
+*.filters
+*.props
+*.opensdf
+*.pro
+*.pro.user
+
