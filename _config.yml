@@ -82,6 +82,9 @@ show-author: false
 # do you want some animations?
 animation: true
 
+# bacground picture
+background: assets/background.png
+
 sass:
     sass_dir: _sass
     style: :compressed
