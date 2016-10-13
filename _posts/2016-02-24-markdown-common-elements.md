@@ -6,7 +6,6 @@ image: /assets/images/markdown.jpg
 headerImage: false
 tag:
 - markdown
-- elements
 blog: true
 star: true
 author: gdf

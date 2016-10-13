@@ -6,8 +6,6 @@ image: /assets/images/markdown.jpg
 headerImage: false
 tag:
 - markdown
-- components
-- extra
 blog: true
 author: gdf
 description: Markdown summary with different options
