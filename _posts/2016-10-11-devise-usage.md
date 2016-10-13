@@ -8,7 +8,6 @@ tag:
 - 翻译
 - devise
 - rails
-- ruby
 blog: true
 author: gdf
 description: Devise的基本用法

@@ -8,7 +8,6 @@ tag:
 - 翻译
 - devise
 - rails
-- ruby
 blog: true
 author: gdf
 description: 如何自定义Devise的主要几个功能
