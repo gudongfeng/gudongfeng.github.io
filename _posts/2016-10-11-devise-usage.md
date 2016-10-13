@@ -1,13 +1,14 @@
 ---
 title: Devise的用法
 layout: post
-date: 2016-10-12
+date: 2016-10-11
 image: /assets/images/markdown.jpg
 headerImage: false
 tag:
 - 翻译
 - devise
 - rails
+- ruby
 blog: true
 author: gdf
 description: Devise的基本用法
