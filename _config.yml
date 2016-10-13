@@ -83,7 +83,7 @@ show-author: false
 animation: true
 
 # bacground picture
-background: assets/background.png
+background: assets/images/background.png
 
 sass:
     sass_dir: _sass

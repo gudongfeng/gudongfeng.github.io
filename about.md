@@ -4,43 +4,33 @@ layout: page
 ---
 ![Profile Image]({{ site.url }}/{{ site.picture }})
 
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+My name is Dongfeng Gu,  I’m a graduate student at University of Ottawa 
+and the technical co-founder of Talk with sam company. Currently, I’m working 
+as a research assistant in VIVA Lab with professor Robert Laganière 
+and my main area of interest is action detection.
 
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+## Projects
 
-<h2>Skills</h2>
+- (Markdown) [Personal Blog](https://github.com/frankgu/frankgu.github.io)
+- (PHP) [Wordpress Website 1](http://www.gdf.name/)
+- (PHP) [Wordpress Website 2](http://sis2spa.com/)
+- (PHP) [Wordpress Website 3](http://www.mamituojiao.com/)
+- (Python) [Action Detection using Tensorflow LSTM](https://github.com/frankgu/tensorflow_video_rnn)
+- (Ruby) [Talk With Sam Server](https://github.com/frankgu/TalkWithSam)
+- (Ruby) [Talk With Sam Wechat Server](https://github.com/frankgu/TalkWithSam_Wechat)
+- (C#) [Unity FPS Game](https://github.com/frankgu/UnityFPSGame)
+- (C++) [Chai3d Spring Partile](https://github.com/frankgu/chai3d_spring_partile)
+- (Java) [Carleton Voting System](https://github.com/frankgu/voting-system)
+- (C++) [King and Thing Board Game](https://github.com/frankgu/King-new)
+- (JavaScript) [Library Management](https://github.com/frankgu/Team-1)
 
-<ul class="skill-list">
-	<li>HTML - Jade - Haml - Erb</li>
-	<li>Responsive (Mobile First)</li>
-	<li>CSS (Stylus, Sass, Less)</li>
-	<li>Css Frameworks (Bootstrap, Foundation)</li>
-	<li>Javascript (Design Patterns, Testes)</li>
-	<li>NodeJS</li>
-	<li>AngularJS - ReactJS</li>
-	<li>Grunt - Gulp - Yeoman</li>
-	<li>Git</li>
-	<li>PHP</li>
-	<li>Python</li>
-	<li>MySQL - MongoDB</li>
-	<li>Scrum and Kanban</li>
-	<li>TDD e Continuous Integration</li>
-</ul>
+## Contributions
 
-<h2>Projects</h2>
+- (C++) [Video Annotation](https://github.com/frankgu/Annotate)
+- (Ruby) [Wechat Starter](https://github.com/goofansu/wechat-starter)
 
-<ul>
-	<li><a href="https://github.com/">Lorem Lorem</a></li>
-	<li><a href="https://github.com/">Ipsum Dolor</a></li>
-	<li><a href="https://github.com/">Dolor Lorem</a></li>
-</ul>
+## Resume
+
+<object data="{{ site.url }}/assets/pdfs/Resume.pdf" type="application/pdf" width="100%" height="800px"></object>
+
+[Download]({{ site.url }}/assets/pdfs/Resume.pdf)
