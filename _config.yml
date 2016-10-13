@@ -10,7 +10,7 @@ description: A blog about technology and stuff related
 external-image: false
 picture: assets/images/profile.jpeg
 
-url: http://frankgu.github.io
+url: http://blog.gdf.name
 # your url: http://USERNAME.github.io
 
 permalink: /:title/
@@ -59,10 +59,8 @@ width: normal
 # paginate: 5
 # paginate_path: "blog/:num/"
 
-# if you don't need projects, comment the *projects* configs below
+post-tag: true
 projects: true
-
-# if you don't need "about" or "blog", comment them out below
 about: true
 blog: true
 
