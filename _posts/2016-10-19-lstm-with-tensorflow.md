@@ -84,10 +84,11 @@ def __call__(self, inputs, state, scope=None):
 |state|$$h_{t-1}$$|
 |B|$$b_h$$|
 
-<br>
+
 ```python
 output = self._activation(_linear([inputs, state], self._num_units, True))
 ``` 
+
 下面是上述代码对应的解释
 
 |代码|解释|
