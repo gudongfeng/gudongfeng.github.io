@@ -15,12 +15,14 @@ description: 根据Tensorflow中LSTM的代码来理解什么是LSTM
 ---
 
 # 目录
+
 - [RNN](#rnn)
 - [LSTM](#lstm)
 
 
 ## 参考文档与引子
 
+---
 > **缩略词**
 > > **RNN** ([Recurrent neural network](https://en.wikipedia.org/wiki/Recurrent_neural_network)) 循环神经网络
 > > <br>
@@ -33,11 +35,15 @@ description: 根据Tensorflow中LSTM的代码来理解什么是LSTM
 在本篇博客中，我将尝试通过解释Tensorflow中[RNN/LSTM](https://www.tensorflow.org/versions/r0.11/tutorials/recurrent/index.html)部分的[源码](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/models/rnn/ptb)来帮助大家深入理解LSTM网络的运作，同时也是为了来帮助我自己更好的理解LSTM网络。这是本人尝试写的第一篇博客，欢迎大家来加来指正文中的错误或者不合理之处，也欢迎提出各种各样的建议或意见。谢谢！
 
 ## LSTM与RNN的关系
+
+---
 > 有一篇非常有名的博客[The Unreasonable Effectiveness of Recurrent Neural Networks](http://karpathy.github.io/2015/05/21/rnn-effectiveness/) 详细介绍了什么是RNN并且作者开源一个[基于LSTM的多层RNN神经网络项目](https://github.com/karpathy/char-rnn)(使用了Torch)，强烈建议没有看过的人或者对于RNN概念不是非常清楚的人进来看看。这篇博客还有中文翻译版本：[链接](https://zhuanlan.zhihu.com/p/22107715)
 
 LSTM从本质上来说并不是一个完整的神经网络模型，它其实是对RNN神经网络中的神经元／隐含单元（CELL／Hidden unit）的一种变形与改进。在这种改变当中，LSTM在神经元中加入了一个状态（State）的概念用来储存长期的记忆（具体LSTM结构将会在博客的后面有介绍）。在很多网上面介绍LSTM的教程或者博客当中，他们其实都只给了LSTM神经元的结构，这是属于RNN框架中的一部分。所以说如果想要理解LSTM我们首先需要理解什么是RNN。
 
 ### RNN
+
+---
 > 本篇博客的主要目的是在于将Tensorflow中的代码与LSTM和RNN的理论公式对接起来。让大家可以更容易的使用Tensorflow来开发属于自己的神经网络，或者让大家可以对LSTM与RNN有一个更加直观的从代码方面的理解。所以说本博客假设读者已经对LSTM与RNN有一定的了解，我将会直接从图片开始来解读RNN和LSTM。对于那些对RNN和LSTM没有概念的人，我建议可以从参考文档中的那篇[博客](http://colah.github.io/posts/2015-08-Understanding-LSTMs/)开始读起。
 
 首先让我们从全局查看RNN神经网络是如何运作的
@@ -84,7 +90,6 @@ def __call__(self, inputs, state, scope=None):
 |state|$$h_{t-1}$$|
 |B|$$b_h$$|
 
-
 ```python
 output = self._activation(_linear([inputs, state], self._num_units, True))
 ``` 
@@ -98,6 +103,8 @@ output = self._activation(_linear([inputs, state], self._num_units, True))
 |True|加入偏移（bias） $$B$$| 
 
 ### LSTM
+
+---
 下面让我们看一看LSTM，首先我们来看一下LSTM神经元的内部结构：
 ![LSTM 神经元／隐含单元（CELL / Hidden unit）](/assets/images/posts/lstm_cell.png)
 <figcaption class="caption">LSTM 神经元／隐含单元（CELL / Hidden unit）</figcaption>
@@ -157,7 +164,6 @@ $$ h_t = o_t\otimes tanh(c_t)$$
 |new_c|$$c_t$$|`[批尺寸大小(batch size), 隐含单元数(number of unit)]`|新的记忆单元（$$c_t$$）|
 |new_h|$$h_t$$|`[批尺寸大小(batch size), 隐含单元数(number of unit)]`|新的隐含状态（$$h_t$$）|
 
-<br>
 ```python
 concat = _linear([inputs, h], 4 * self._num_units, True)
 ```
@@ -186,4 +192,6 @@ $$ h_t = o_t\otimes tanh(c_t)$$
 最后tensorflow将新的隐含状态 $$h_t$$ 返回，并将新的隐含状态和新的记忆单元串联起来之后返回。
 
 ## 结束语
+
+---
 至此我们应该对LSTM有了一定程度上的理解，欢迎读者们在下方评论区留言发表修改意见。谢谢！
