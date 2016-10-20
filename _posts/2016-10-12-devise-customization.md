@@ -1,5 +1,5 @@
 ---
-title: 自定义Devise
+title: 【译】自定义Devise
 layout: post
 date: 2016-10-12
 image: /assets/images/markdown.jpg

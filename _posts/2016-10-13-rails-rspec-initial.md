@@ -1,5 +1,5 @@
 ---
-title: Rails测试：如何给Rails项目初始化Rspec
+title: 【译】Rails测试：如何给Rails项目初始化Rspec
 layout: post
 date: 2016-10-12
 image: /assets/images/markdown.jpg

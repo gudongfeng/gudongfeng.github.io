@@ -1,5 +1,5 @@
 ---
-title: Devise的用法
+title: 【译】Devise的用法
 layout: post
 date: 2016-10-11
 image: /assets/images/markdown.jpg

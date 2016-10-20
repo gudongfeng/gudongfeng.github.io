@@ -1,5 +1,5 @@
 ---
-title: "Markdown Extra Components"
+title: "[Reference] Markdown Extra Components"
 layout: post
 date: 2016-02-24
 image: /assets/images/markdown.jpg
