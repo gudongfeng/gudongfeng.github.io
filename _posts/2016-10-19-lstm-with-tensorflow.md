@@ -24,9 +24,10 @@ description: 根据Tensorflow中LSTM的代码来理解什么是LSTM
 
 ---
 > **缩略词**
-> > **RNN** ([Recurrent neural network](https://en.wikipedia.org/wiki/Recurrent_neural_network)) 循环神经网络
-> > <br>
-> > **LSTM** ([Long short-term memory](https://en.wikipedia.org/wiki/Long_short-term_memory)) 长短期记忆人工神经网络
+> <br>
+> **RNN** ([Recurrent neural network](https://en.wikipedia.org/wiki/Recurrent_neural_network)) 循环神经网络
+> <br>
+> **LSTM** ([Long short-term memory](https://en.wikipedia.org/wiki/Long_short-term_memory)) 长短期记忆人工神经网络
 
 当我们在谷歌搜索LSTM这个关键字时，搜索结果的第一条就是一篇非常著名的博客 [Understanding LSTM Networks](http://colah.github.io/posts/2015-08-Understanding-LSTMs/) 来介绍LSTM网络，这篇博客的作者是 [Christopher Olah](http://colah.github.io/about.html)，在谷歌 Google Brain 工作。这篇博客的中文翻译版为 [[译] 理解 LSTM 网络](http://www.jianshu.com/p/9dc9f41f0b29)。
 
