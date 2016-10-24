@@ -17,6 +17,7 @@ description: Rails 的用户认证
 原文[链接](https://rails.devcamp.com/professional-rails-development-course/application-build/rails-authentication)
 
 ## 文章正文
+
 ### 为什么要从用户认证（Authentication）开始
 
 当我们决定先创建什么功能的时候，一个重要的依据就是功能之间的依赖性（dependencies）。依赖性的意思就是指不同功能之间的需求程度。功能A的依赖性高就是指有很多其他的功能需要这个功能A。下面让我们看一看我们所创建的需求表：
