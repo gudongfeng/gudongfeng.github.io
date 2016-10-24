@@ -5,6 +5,7 @@ date: 2016-10-23
 image: 
 headerImage: false
 tag:
+- 翻译
 - devise
 - rails
 - ruby

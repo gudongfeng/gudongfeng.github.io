@@ -11,8 +11,8 @@
     "url": "git+https://github.com/sergiokopplin/indigo.git"
   },
   "scripts": {
-    "build": "bundle exec jekyll build",
-    "serve": "bundle exec jekyll serve",
+    "build": "bundle exec jekyll build --config _config.yml,_config_dev.yml --watch",
+    "serve": "bundle exec jekyll serve --config _config.yml,_config_dev.yml --watch",
     "test": "bundle exec htmlproofer ./_site"
   }
 }
