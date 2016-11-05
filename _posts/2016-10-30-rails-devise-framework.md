@@ -1,5 +1,5 @@
 ---
-title: "Wechat - devise authentication framework"
+title: "Wechat: devise authentication framework"
 layout: post
 date: 2016-10-30
 tag:
