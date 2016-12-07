@@ -1,4 +1,61 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2016-11-26T23:52:58-05:00</updated><id>http://localhost:4000/</id><title>Dongfeng Gu</title><subtitle>A blog about technology and stuff related</subtitle><entry><title>Resources for building a rails api-only application</title><link href="http://localhost:4000/build-rails-api-only-application/" rel="alternate" type="text/html" title="Resources for building a rails api-only application" /><published>2016-11-26T00:00:00-05:00</published><updated>2016-11-26T00:00:00-05:00</updated><id>http://localhost:4000/build-rails-api-only-application</id><content type="html" xml:base="http://localhost:4000/build-rails-api-only-application/">&lt;h1 id=&quot;useful-resources&quot;&gt;Useful resources&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2016-12-06T23:35:03-05:00</updated><id>http://localhost:4000/</id><title>Dongfeng Gu</title><subtitle>A blog about technology and stuff related</subtitle><entry><title>Setup reactjs for web development</title><link href="http://localhost:4000/setup-react/" rel="alternate" type="text/html" title="Setup reactjs for web development" /><published>2016-12-06T00:00:00-05:00</published><updated>2016-12-06T00:00:00-05:00</updated><id>http://localhost:4000/setup-react</id><content type="html" xml:base="http://localhost:4000/setup-react/">&lt;h1 id=&quot;essential-npm-packages&quot;&gt;Essential NPM Packages&lt;/h1&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;name&lt;/th&gt;
+      &lt;th&gt;functions&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href=&quot;http://browserify.org/&quot;&gt;Browserify&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;Allows the browser to use NPM modules&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href=&quot;http://babeljs.io/&quot;&gt;Babel&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;Compiles ES6/JSX into browser-readable Javascript&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href=&quot;https://babeljs.io/docs/plugins/preset-react/&quot;&gt;Babel-React-Preset&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;Tells Babel how to compile JSX&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href=&quot;https://github.com/babel/babelify&quot;&gt;Babelify&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;Allows you to use Babel with Browserify&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href=&quot;https://github.com/substack/watchify&quot;&gt;Watchify&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;Watches for changes and instantly starts compiling&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h1 id=&quot;create-the-react-skeleton-project&quot;&gt;Create the react skeleton project&lt;/h1&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;create a folder name &lt;code class=&quot;highlighter-rouge&quot;&gt;react-skeleton&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;cd&lt;/code&gt; into the &lt;code class=&quot;highlighter-rouge&quot;&gt;react-skeleton&lt;/code&gt; folder&lt;/li&gt;
+  &lt;li&gt;create &lt;code class=&quot;highlighter-rouge&quot;&gt;public&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;src&lt;/code&gt; folders&lt;/li&gt;
+  &lt;li&gt;run &lt;code class=&quot;highlighter-rouge&quot;&gt;git init&lt;/code&gt; and push your project to github&lt;/li&gt;
+  &lt;li&gt;run &lt;code class=&quot;highlighter-rouge&quot;&gt;npm init&lt;/code&gt; to initilize the &lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt; file (indicate that this project is a node project)&lt;/li&gt;
+  &lt;li&gt;install the essential npm packages
+    &lt;ul&gt;
+      &lt;li&gt;npm install -g browserify&lt;/li&gt;
+      &lt;li&gt;npm install –save babelify&lt;/li&gt;
+      &lt;li&gt;npm install –save watchify&lt;/li&gt;
+      &lt;li&gt;npm install –save babel-preset-react&lt;/li&gt;
+      &lt;li&gt;npm install –save react&lt;/li&gt;
+      &lt;li&gt;npm install –save react-dom&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;create a &lt;code class=&quot;highlighter-rouge&quot;&gt;components&lt;/code&gt; folder inside &lt;code class=&quot;highlighter-rouge&quot;&gt;src&lt;/code&gt; folder&lt;/li&gt;
+  &lt;li&gt;create file &lt;code class=&quot;highlighter-rouge&quot;&gt;src/main.jsx&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;create file &lt;code class=&quot;highlighter-rouge&quot;&gt;src/components/List.jsx&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;create file &lt;code class=&quot;highlighter-rouge&quot;&gt;src/components/ListItem.jsx&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Project Github &lt;a href=&quot;https://github.com/devslopes/react-skeleton&quot;&gt;Link&lt;/a&gt;&lt;/p&gt;</content><author><name>gdf</name></author><category term="reactjs" /><category term="javascript" /><summary>Essential NPM Packages</summary></entry><entry><title>Resources for building a rails api-only application</title><link href="http://localhost:4000/build-rails-api-only-application/" rel="alternate" type="text/html" title="Resources for building a rails api-only application" /><published>2016-11-26T00:00:00-05:00</published><updated>2016-11-26T00:00:00-05:00</updated><id>http://localhost:4000/build-rails-api-only-application</id><content type="html" xml:base="http://localhost:4000/build-rails-api-only-application/">&lt;h1 id=&quot;useful-resources&quot;&gt;Useful resources&lt;/h1&gt;
 
 &lt;h2 id=&quot;tutorials&quot;&gt;Tutorials&lt;/h2&gt;
 
@@ -1283,20 +1340,4 @@ app/views/devise/mailer/unlock_instructions.html.erb
   &lt;li&gt;add the action annotation function to the program&lt;/li&gt;
   &lt;li&gt;refactor the tracker function in the program&lt;/li&gt;
   &lt;li&gt;create the XML annotation file import and export function&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>gdf</name></author><category term="c++" /><category term="opencv" /><summary></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/projects/cv-annotation.png" /></entry><entry><title>Wordpress Websites</title><link href="http://localhost:4000/wordpress-websites/" rel="alternate" type="text/html" title="Wordpress Websites" /><published>2016-05-17T00:00:00-04:00</published><updated>2016-05-17T00:00:00-04:00</updated><id>http://localhost:4000/wordpress-websites</id><content type="html" xml:base="http://localhost:4000/wordpress-websites/">&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;http://www.mamituojiao.com/&quot;&gt;mamituojiao&lt;/a&gt; A Company that focusing on young children education in Henan, China&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;/assets/images/projects/wp-mamituojiao.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;http://sis2spa.com&quot;&gt;sis2spa&lt;/a&gt; A SPA located in Ottawa, Canada&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;/assets/images/projects/wp-sis2spa.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;http://www.gdf.name&quot;&gt;www.gdf.name&lt;/a&gt; My personal wordpress website&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;/assets/images/projects/wp-personal.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;</content><author><name>gdf</name></author><category term="wordpress" /><summary>mamituojiao A Company that focusing on young children education in Henan, China</summary></entry></feed>
+&lt;/ol&gt;</content><author><name>gdf</name></author><category term="c++" /><category term="opencv" /><summary></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/projects/cv-annotation.png" /></entry></feed>
