@@ -7,6 +7,7 @@ headerImage: false
 tag:
 - reactjs
 - javascript
+- bootstrap
 blog: true
 author: gdf
 description: how to setup reactjs for web development, include the essential npm for reactjs
