@@ -25,3 +25,7 @@ externalLink: false
 3. [www.gdf.name](http://www.gdf.name) My personal wordpress website
 
     ![image](/assets/images/projects/wp-personal.png)
+
+4. [tipot technologies](http://www.tipottechnologies.com/) A startup technology Company
+
+    ![image](/assets/images/projects/tipot.png)
