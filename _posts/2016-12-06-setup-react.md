@@ -71,3 +71,17 @@ example html:
 </html>
 ```
 
+# Chrome developer tool setting
+1. search [React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi) on Chrome web store
+2. enable the `Allow in incognito` and `Allow access to file URLs` options of this tool inside the chrome extensions manager
+
+    ![image](/assets/images/posts/react-chrome-tool.png)
+
+3. intall the http-server globally
+
+    `npm install -g http-server`
+
+4. run `http-server` command on you react project folder (make sure that you project folder has public subfolder) and navigate to [http://127.0.0.1:8080/](http://127.0.0.1:8080/)
+5. debug your react program by navigating to react debugger
+
+    ![image](/assets/images/posts/react-debug-chrome.png)

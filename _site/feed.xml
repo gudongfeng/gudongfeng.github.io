@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2016-12-06T23:35:03-05:00</updated><id>http://localhost:4000/</id><title>Dongfeng Gu</title><subtitle>A blog about technology and stuff related</subtitle><entry><title>Setup reactjs for web development</title><link href="http://localhost:4000/setup-react/" rel="alternate" type="text/html" title="Setup reactjs for web development" /><published>2016-12-06T00:00:00-05:00</published><updated>2016-12-06T00:00:00-05:00</updated><id>http://localhost:4000/setup-react</id><content type="html" xml:base="http://localhost:4000/setup-react/">&lt;h1 id=&quot;essential-npm-packages&quot;&gt;Essential NPM Packages&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2016-12-18T22:38:46-05:00</updated><id>http://localhost:4000/</id><title>Dongfeng Gu</title><subtitle>A blog about technology and stuff related</subtitle><entry><title>Setup reactjs for web development</title><link href="http://localhost:4000/setup-react/" rel="alternate" type="text/html" title="Setup reactjs for web development" /><published>2016-12-06T00:00:00-05:00</published><updated>2016-12-06T00:00:00-05:00</updated><id>http://localhost:4000/setup-react</id><content type="html" xml:base="http://localhost:4000/setup-react/">&lt;h1 id=&quot;essential-npm-packages&quot;&gt;Essential NPM Packages&lt;/h1&gt;
 
 &lt;table&gt;
   &lt;thead&gt;
@@ -53,9 +53,59 @@
   &lt;li&gt;create file &lt;code class=&quot;highlighter-rouge&quot;&gt;src/main.jsx&lt;/code&gt;&lt;/li&gt;
   &lt;li&gt;create file &lt;code class=&quot;highlighter-rouge&quot;&gt;src/components/List.jsx&lt;/code&gt;&lt;/li&gt;
   &lt;li&gt;create file &lt;code class=&quot;highlighter-rouge&quot;&gt;src/components/ListItem.jsx&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;create a &lt;code class=&quot;highlighter-rouge&quot;&gt;js&lt;/code&gt; folder inside &lt;code class=&quot;highlighter-rouge&quot;&gt;public&lt;/code&gt; folder&lt;/li&gt;
+  &lt;li&gt;create file &lt;code class=&quot;highlighter-rouge&quot;&gt;public/js/main.js&lt;/code&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;Project Github &lt;a href=&quot;https://github.com/devslopes/react-skeleton&quot;&gt;Link&lt;/a&gt;&lt;/p&gt;</content><author><name>gdf</name></author><category term="reactjs" /><category term="javascript" /><summary>Essential NPM Packages</summary></entry><entry><title>Resources for building a rails api-only application</title><link href="http://localhost:4000/build-rails-api-only-application/" rel="alternate" type="text/html" title="Resources for building a rails api-only application" /><published>2016-11-26T00:00:00-05:00</published><updated>2016-11-26T00:00:00-05:00</updated><id>http://localhost:4000/build-rails-api-only-application</id><content type="html" xml:base="http://localhost:4000/build-rails-api-only-application/">&lt;h1 id=&quot;useful-resources&quot;&gt;Useful resources&lt;/h1&gt;
+&lt;p&gt;Project &lt;a href=&quot;https://github.com/devslopes/react-skeleton&quot;&gt;Link&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;use-bootstrap3x-and-jquery-for-styling&quot;&gt;Use Bootstrap(3.X) and Jquery for styling&lt;/h1&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;add &lt;a href=&quot;http://getbootstrap.com/getting-started/#download&quot;&gt;Bootstrap&lt;/a&gt; content delivery network (CDN) to html file&lt;/li&gt;
+  &lt;li&gt;add &lt;a href=&quot;https://code.jquery.com/&quot;&gt;Jquery&lt;/a&gt; CDN to html file&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;example html:&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- Latest compiled and minified CSS --&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;stylesheet&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;integrity=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;crossorigin=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;anonymous&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- Optional theme --&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;stylesheet&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;integrity=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;crossorigin=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;anonymous&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;btn btn-primary&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Click Me!&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://code.jquery.com/jquery-3.1.1.min.js&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;integrity=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;crossorigin=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;anonymous&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- Latest compiled and minified JavaScript --&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;integrity=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;crossorigin=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;anonymous&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;chrome-developer-tool-setting&quot;&gt;Chrome developer tool setting&lt;/h1&gt;
+&lt;ol&gt;
+  &lt;li&gt;search &lt;a href=&quot;https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi&quot;&gt;React Developer Tools&lt;/a&gt; on Chrome web store&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;enable the &lt;code class=&quot;highlighter-rouge&quot;&gt;Allow in incognito&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Allow access to file URLs&lt;/code&gt; options of this tool inside the chrome extensions manager&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;/assets/images/posts/react-chrome-tool.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;intall the http-server globally&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;npm install -g http-server&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;run &lt;code class=&quot;highlighter-rouge&quot;&gt;http-server&lt;/code&gt; command on you react project folder (make sure that you project folder has public subfolder) and navigate to &lt;a href=&quot;http://127.0.0.1:8080/&quot;&gt;http://127.0.0.1:8080/&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;debug your react program by navigating to react debugger&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;/assets/images/posts/react-debug-chrome.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</content><author><name>gdf</name></author><category term="reactjs" /><category term="javascript" /><category term="bootstrap" /><summary>Essential NPM Packages</summary></entry><entry><title>Resources for building a rails api-only application</title><link href="http://localhost:4000/build-rails-api-only-application/" rel="alternate" type="text/html" title="Resources for building a rails api-only application" /><published>2016-11-26T00:00:00-05:00</published><updated>2016-11-26T00:00:00-05:00</updated><id>http://localhost:4000/build-rails-api-only-application</id><content type="html" xml:base="http://localhost:4000/build-rails-api-only-application/">&lt;h1 id=&quot;useful-resources&quot;&gt;Useful resources&lt;/h1&gt;
 
 &lt;h2 id=&quot;tutorials&quot;&gt;Tutorials&lt;/h2&gt;
 
