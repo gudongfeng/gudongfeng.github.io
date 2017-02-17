@@ -28,4 +28,8 @@ externalLink: false
 
 4. [tipot technologies](http://www.tipottechnologies.com/) A startup technology Company
 
-    ![image](/assets/images/projects/tipot.png)
+    ![image](/assets/images/projects/wp-tipot.png)
+
+5. [solaracm](http://www.solaracm.com)  A company that focus on providing intelligent automation solutions for improving the efficiency of operations and maintenance (O&M) of large-scale solar power plants.
+
+    ![image](/assets/images/projects/wp-solaracm.png)
