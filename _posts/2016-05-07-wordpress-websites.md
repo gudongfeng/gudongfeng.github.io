@@ -33,3 +33,7 @@ externalLink: false
 5. [solaracm](http://www.solaracm.com)  A company that focus on providing intelligent automation solutions for improving the efficiency of operations and maintenance (O&M) of large-scale solar power plants.
 
     ![image](/assets/images/projects/wp-solaracm.png)
+
+6. [yunbei](http://www.yb361.com) A Chinese company that make products for pregnant woman and baby.
+
+    ![image](/assets/images/projects/wp-yunbei.png)
