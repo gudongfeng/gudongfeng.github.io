@@ -16,6 +16,8 @@ and my main area of interest is action detection.
 - (PHP) [Wordpress Website 2](http://sis2spa.com/)
 - (PHP) [Wordpress Website 3](http://www.mamituojiao.com/)
 - (Python) [Action Detection using Tensorflow LSTM](https://github.com/frankgu/tensorflow_video_rnn)
+- (Python) [Tensorflow: C3D Action Detection](https://github.com/frankgu/C3D-tensorflow)
+- (Python) [Tensorflow: 3D-denseNet Action Detection](https://github.com/frankgu/3d-DenseNet)
 - (Ruby) [Talk With Sam Server](https://github.com/frankgu/TalkWithSam)
 - (Ruby) [Talk With Sam Wechat Server](https://github.com/frankgu/TalkWithSam_Wechat)
 - (C#) [Unity FPS Game](https://github.com/frankgu/UnityFPSGame)
@@ -28,6 +30,7 @@ and my main area of interest is action detection.
 
 - (C++) [Video Annotation](https://github.com/frankgu/Annotate)
 - (Ruby) [Wechat Starter](https://github.com/goofansu/wechat-starter)
+- (Python) [C3D-tensorflow](https://github.com/hx173149/C3D-tensorflow)
 
 ## Resume
 
