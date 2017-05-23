@@ -1,4 +1,309 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2016-12-18T22:38:46-05:00</updated><id>http://localhost:4000/</id><title>Dongfeng Gu</title><subtitle>A blog about technology and stuff related</subtitle><entry><title>Setup reactjs for web development</title><link href="http://localhost:4000/setup-react/" rel="alternate" type="text/html" title="Setup reactjs for web development" /><published>2016-12-06T00:00:00-05:00</published><updated>2016-12-06T00:00:00-05:00</updated><id>http://localhost:4000/setup-react</id><content type="html" xml:base="http://localhost:4000/setup-react/">&lt;h1 id=&quot;essential-npm-packages&quot;&gt;Essential NPM Packages&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-05-22T21:43:01-04:00</updated><id>http://localhost:4000/</id><title>Dongfeng Gu</title><subtitle>A blog about technology and stuff related</subtitle><entry><title>使用你的苹果电脑来搭建一个VPN网络</title><link href="http://localhost:4000/setup-vpn/" rel="alternate" type="text/html" title="使用你的苹果电脑来搭建一个VPN网络" /><published>2017-05-22T00:00:00-04:00</published><updated>2017-05-22T00:00:00-04:00</updated><id>http://localhost:4000/setup-vpn</id><content type="html" xml:base="http://localhost:4000/setup-vpn/">&lt;h2 id=&quot;section&quot;&gt;需要准备的东西&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;一台苹果电脑&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://itunes.apple.com/ca/app/macos-server/id883878097?mt=12&quot;&gt;macOS Server&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;能够连上网络的路由器, 并将你的苹果电脑使用网线跟路由器相连接，以达到最高的网络连接速率&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;服务器设置步骤&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;在你的苹果电脑中下载&lt;a href=&quot;https://itunes.apple.com/ca/app/macos-server/id883878097?mt=12&quot;&gt;macOS Server&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;注册一个动态的DNS地址
+    &lt;ul&gt;
+      &lt;li&gt;在&lt;a href=&quot;https://freedns.afraid.org/&quot;&gt;freeDNS&lt;/a&gt;中注册账号并激活邮箱&lt;/li&gt;
+      &lt;li&gt;登陆账号之后在左侧的导航栏选择 Dynamic DNS&lt;/li&gt;
+      &lt;li&gt;添加一个新的 Dynamic DNS 记录&lt;/li&gt;
+      &lt;li&gt;Type: A&lt;/li&gt;
+      &lt;li&gt;Subdomain: (任意)&lt;/li&gt;
+      &lt;li&gt;Domain: (从列表中任意选择一个)&lt;/li&gt;
+      &lt;li&gt;Destination: 自动检测当前的IP地&lt;/li&gt;
+      &lt;li&gt;保存设置, 并记录下你填写和选择的域名(Subdomain.Domain)信息&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;在你的路由器当中设置 port forwarding 的信息
+    &lt;ul&gt;
+      &lt;li&gt;登陆你的路由器(通常为 192.168.0.1 或者 192.168.1.1)，可以在路由器后面的贴纸找到相应的信息，包括账户名跟密码&lt;/li&gt;
+      &lt;li&gt;（可选）找到路由器中的DHCP地址池分配的选项，给自己的苹果电脑预约一个静态的地址&lt;/li&gt;
+      &lt;li&gt;找到 port forwarding 的选项，添加如下图片中的几条设置，注意IP address的选项需要设置为你当前的苹果电脑的静态地址&lt;/li&gt;
+      &lt;li&gt;&lt;img src=&quot;/assets/images/posts/router.png&quot; alt=&quot;img&quot; /&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;在苹果电脑中打开&lt;a href=&quot;https://itunes.apple.com/ca/app/macos-server/id883878097?mt=12&quot;&gt;macOS Server&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;选择左侧菜单栏中的第一个选项（电脑名称）&lt;/li&gt;
+      &lt;li&gt;点击 Edit Host Name 后选择 Internet 的选项&lt;/li&gt;
+      &lt;li&gt;据如下图片设置服务器名字，还有从步骤2中获得的域名的信息&lt;/li&gt;
+      &lt;li&gt;&lt;img src=&quot;/assets/images/posts/macos_server.png&quot; alt=&quot;img&quot; /&gt;&lt;/li&gt;
+      &lt;li&gt;然后等待软件设置DNS的信息&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;启动VPN
+    &lt;ul&gt;
+      &lt;li&gt;在左侧菜单栏中选择VPN的选项&lt;/li&gt;
+      &lt;li&gt;设置 shared secret 为任意值, 用于其他设备登陆这台苹果电脑的密匙&lt;/li&gt;
+      &lt;li&gt;在右上角中开启VPN&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;客户端连接注意事项&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;选择 L2TP 的连接方式&lt;/li&gt;
+  &lt;li&gt;客户端不可与服务器在同一个局域网内，不然的话会连接不上（这个问题坑苦我了）&lt;/li&gt;
+  &lt;li&gt;登陆的账户是你服务器苹果电脑的用户&lt;/li&gt;
+  &lt;li&gt;shared secret 是上述步骤五中你填写的值&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>gdf</name></author><category term="vpn" /><category term="macos server" /><summary>需要准备的东西</summary></entry><entry><title>Tensorflow: C3D for action detection</title><link href="http://localhost:4000/C3D/" rel="alternate" type="text/html" title="Tensorflow: C3D for action detection" /><published>2017-04-10T00:00:00-04:00</published><updated>2017-04-10T00:00:00-04:00</updated><id>http://localhost:4000/C3D</id><content type="html" xml:base="http://localhost:4000/C3D/">&lt;h1 id=&quot;github&quot;&gt;Github&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/frankgu/C3D-tensorflow&quot;&gt;link&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;project-readme&quot;&gt;Project ReadMe&lt;/h1&gt;
+
+&lt;h2 id=&quot;c3d-tensorflow&quot;&gt;C3D-tensorflow&lt;/h2&gt;
+
+&lt;h3 id=&quot;repeat-the-experiment-result&quot;&gt;Repeat the experiment result:&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Install the following two python libs:&lt;/p&gt;
+
+    &lt;p&gt;a) &lt;a href=&quot;https://www.tensorflow.org/&quot;&gt;tensorflow&lt;/a&gt;(version r1.0)&lt;/p&gt;
+
+    &lt;p&gt;b) &lt;a href=&quot;http://pillow.readthedocs.io/en/3.1.x/reference/Image.html&quot;&gt;Pillow&lt;/a&gt;&lt;/p&gt;
+
+    &lt;p&gt;c) &lt;a href=&quot;http://opencv.org/&quot;&gt;Opencv&lt;/a&gt;&lt;/p&gt;
+
+    &lt;p&gt;d) &lt;a href=&quot;http://scikit-learn.org/stable/install.html&quot;&gt;sklearn&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Download the &lt;a href=&quot;http://crcv.ucf.edu/data/UCF101/UCF101.rar&quot;&gt;UCF101&lt;/a&gt; (Action Recognition Data Set)&lt;/li&gt;
+  &lt;li&gt;Extract the &lt;code class=&quot;highlighter-rouge&quot;&gt;UCF101.rar&lt;/code&gt; file and you will get &lt;code class=&quot;highlighter-rouge&quot;&gt;UCF101/{action_name}/{video.avi}&lt;/code&gt; folder structure&lt;/li&gt;
+  &lt;li&gt;Use the &lt;code class=&quot;highlighter-rouge&quot;&gt;./list/convert_video_to_images.sh&lt;/code&gt; script to decode the ucf101 video files (from video to images)
+    &lt;ul&gt;
+      &lt;li&gt;run &lt;code class=&quot;highlighter-rouge&quot;&gt;./list/convert_video_to_images.sh .../UCF101 5&lt;/code&gt; (number &lt;code class=&quot;highlighter-rouge&quot;&gt;5&lt;/code&gt; means the fps rate)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Create the &lt;code class=&quot;highlighter-rouge&quot;&gt;train.list&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;test.list&lt;/code&gt; files in &lt;code class=&quot;highlighter-rouge&quot;&gt;list&lt;/code&gt; directory.&lt;/li&gt;
+  &lt;li&gt;Use the &lt;code class=&quot;highlighter-rouge&quot;&gt;./list/convert_images_to_list.sh&lt;/code&gt; script to update the &lt;code class=&quot;highlighter-rouge&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;train,test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.list&lt;/span&gt;&lt;/code&gt; according to the &lt;code class=&quot;highlighter-rouge&quot;&gt;UCF101&lt;/code&gt; folder structure (from images to files)
+    &lt;ul&gt;
+      &lt;li&gt;run &lt;code class=&quot;highlighter-rouge&quot;&gt;./list/convert_images_to_list.sh .../UCF101 4&lt;/code&gt;, this will update the &lt;code class=&quot;highlighter-rouge&quot;&gt;test.list&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;train.list&lt;/code&gt; files (number &lt;code class=&quot;highlighter-rouge&quot;&gt;4&lt;/code&gt; means the ratio of test and train data is 1/4)&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;
+ database/ucf101/train/ApplyEyeMakeup/v_ApplyEyeMakeup_g01_c01 0
+ database/ucf101/train/ApplyEyeMakeup/v_ApplyEyeMakeup_g01_c02 0
+ database/ucf101/train/ApplyEyeMakeup/v_ApplyEyeMakeup_g01_c03 0
+ database/ucf101/train/ApplyLipstick/v_ApplyLipstick_g01_c01 1
+ database/ucf101/train/ApplyLipstick/v_ApplyLipstick_g01_c02 1
+ database/ucf101/train/ApplyLipstick/v_ApplyLipstick_g01_c03 1
+ database/ucf101/train/Archery/v_Archery_g01_c01 2
+ database/ucf101/train/Archery/v_Archery_g01_c02 2
+ database/ucf101/train/Archery/v_Archery_g01_c03 2
+ database/ucf101/train/Archery/v_Archery_g01_c04 2
+ database/ucf101/train/BabyCrawling/v_BabyCrawling_g01_c01 3
+ database/ucf101/train/BabyCrawling/v_BabyCrawling_g01_c02 3
+ database/ucf101/train/BabyCrawling/v_BabyCrawling_g01_c03 3
+ database/ucf101/train/BabyCrawling/v_BabyCrawling_g01_c04 3
+ database/ucf101/train/BalanceBeam/v_BalanceBeam_g01_c01 4
+ database/ucf101/train/BalanceBeam/v_BalanceBeam_g01_c02 4
+ database/ucf101/train/BalanceBeam/v_BalanceBeam_g01_c03 4
+ database/ucf101/train/BalanceBeam/v_BalanceBeam_g01_c04 4
+ ...
+&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Run the training program &lt;code class=&quot;highlighter-rouge&quot;&gt;python train_c3d.py&lt;/code&gt; (you can pause or stop the training procedure and resume the training by runing this command again)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Evaluate the result &lt;code class=&quot;highlighter-rouge&quot;&gt;python eval_c3d.py&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;options&quot;&gt;Options&lt;/h3&gt;
+
+&lt;h4 id=&quot;use-the-pretrained-model&quot;&gt;Use the pretrained model&lt;/h4&gt;
+&lt;p&gt;If you want to test the pre-trained model (sports1m), you need to download the model from here: https://www.dropbox.com/sh/8wcjrcadx4r31ux/AAAkz3dQ706pPO8ZavrztRCca?dl=0 and move the file &lt;code class=&quot;highlighter-rouge&quot;&gt;sports1m_finetuning_ucf101.model&lt;/code&gt; to the &lt;code class=&quot;highlighter-rouge&quot;&gt;root&lt;/code&gt; folder&lt;/p&gt;
+
+&lt;h4 id=&quot;use-other-dataset-than-ucf101&quot;&gt;Use other dataset than UCF101&lt;/h4&gt;
+&lt;ol&gt;
+  &lt;li&gt;Modify the &lt;code class=&quot;highlighter-rouge&quot;&gt;NUM_CLASSES&lt;/code&gt; variable in the &lt;code class=&quot;highlighter-rouge&quot;&gt;c3d_model.py&lt;/code&gt; file&lt;/li&gt;
+  &lt;li&gt;Change the &lt;code class=&quot;highlighter-rouge&quot;&gt;NUM_EXAMPLES_PER_EPOCH_FOR_TRAIN&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;NUM_EXAMPLES_PER_EPOCH_FOR_EVAL&lt;/code&gt; variables in the &lt;code class=&quot;highlighter-rouge&quot;&gt;c3d_model.py&lt;/code&gt; file
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;NUM_EXAMPLES_PER_EPOCH_FOR_TRAIN&lt;/code&gt; = (total number of training image)/&lt;code class=&quot;highlighter-rouge&quot;&gt;NUM_FRAMES_PER_CLIP&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;NUM_EXAMPLES_PER_EPOCH_FOR_EVAL&lt;/code&gt; = (total number of evaluating image)/&lt;code class=&quot;highlighter-rouge&quot;&gt;NUM_FRAMES_PER_CLIP&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;NUM_FRAMES_PER_CLIP&lt;/code&gt; is in the &lt;code class=&quot;highlighter-rouge&quot;&gt;c3d_model.py&lt;/code&gt; file&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;use-svm-as-classifier&quot;&gt;Use SVM as Classifier&lt;/h4&gt;
+&lt;ol&gt;
+  &lt;li&gt;Required: You need to train the database using &lt;code class=&quot;highlighter-rouge&quot;&gt;train_c3d.py&lt;/code&gt; file and get the checkout model&lt;/li&gt;
+  &lt;li&gt;Run the &lt;code class=&quot;highlighter-rouge&quot;&gt;train_svm.py&lt;/code&gt; file to extract the &lt;code class=&quot;highlighter-rouge&quot;&gt;fc6&lt;/code&gt; features according to the pretrained C3D model and then train the svm model and save the model &lt;code class=&quot;highlighter-rouge&quot;&gt;svm.model&lt;/code&gt; in the result folder&lt;/li&gt;
+  &lt;li&gt;Evaluate the svm model by running the file &lt;code class=&quot;highlighter-rouge&quot;&gt;eval_svm.py&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;experiment-result&quot;&gt;Experiment result:&lt;/h3&gt;
+
+&lt;p&gt;Top-1 accuracy of 80% should be achieved for the validation dataset with this code&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/ucf101_result.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;references&quot;&gt;References:&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Thanks the author &lt;a href=&quot;https://github.com/dutran&quot;&gt;Du tran&lt;/a&gt;’s code: &lt;a href=&quot;https://github.com/facebook/C3D&quot;&gt;C3D-caffe&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://vlg.cs.dartmouth.edu/c3d/&quot;&gt;C3D: Generic Features for Video Analysis&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/frankgu&quot;&gt;frankgu&lt;/a&gt;’s contribution&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>gdf</name></author><category term="tensorflow" /><category term="c3d" /><category term="cnn" /><category term="python" /><summary>Github</summary></entry><entry><title>Tensorflow: 3D-DenseNet for action detection</title><link href="http://localhost:4000/3D-DenseNet/" rel="alternate" type="text/html" title="Tensorflow: 3D-DenseNet for action detection" /><published>2017-04-10T00:00:00-04:00</published><updated>2017-04-10T00:00:00-04:00</updated><id>http://localhost:4000/3D-DenseNet</id><content type="html" xml:base="http://localhost:4000/3D-DenseNet/">&lt;h1 id=&quot;github&quot;&gt;Github&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/frankgu/3d-DenseNet&quot;&gt;link&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;project-readme&quot;&gt;Project ReadMe&lt;/h1&gt;
+
+&lt;h2 id=&quot;d-densenet-with-tensorflow&quot;&gt;3D-DenseNet with TensorFlow&lt;/h2&gt;
+
+&lt;p&gt;Two types of `Densely Connected Convolutional Networks &lt;a href=&quot;https://arxiv.org/abs/1608.06993&quot;&gt;DenseNets&lt;/a&gt; are available:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;DenseNet - without bottleneck layers&lt;/li&gt;
+  &lt;li&gt;DenseNet-BC - with bottleneck layers&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Each model can be tested on such datasets:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://crcv.ucf.edu/data/UCF101/UCF101.rar&quot;&gt;UCF101&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.merl.com/demos/merl-shopping-dataset&quot;&gt;MERL&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;A number of layers, blocks, growth rate, video normalization and other training params may be changed trough shell or inside the source code.&lt;/p&gt;
+
+&lt;p&gt;There are also many &lt;a href=&quot;https://github.com/liuzhuang13/DenseNet&quot;&gt;other implementations&lt;/a&gt; they may be useful also.&lt;/p&gt;
+
+&lt;p&gt;Citation for DenseNet:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; @article{Huang2016Densely,
+        author = {Huang, Gao and Liu, Zhuang and Weinberger, Kilian Q.},
+        title = {Densely Connected Convolutional Networks},
+        journal = {arXiv preprint arXiv:1608.06993},
+        year = {2016}
+ }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;step-1-data-preparation&quot;&gt;Step 1: Data preparation&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Download the &lt;a href=&quot;http://crcv.ucf.edu/data/UCF101/UCF101.rar&quot;&gt;UCF101&lt;/a&gt; (Action Recognition Data Set).&lt;/li&gt;
+  &lt;li&gt;Extract the &lt;code class=&quot;highlighter-rouge&quot;&gt;UCF101.rar&lt;/code&gt; file and you will get &lt;code class=&quot;highlighter-rouge&quot;&gt;UCF101/&amp;lt;action_name&amp;gt;/&amp;lt;video_name.avi&amp;gt;&lt;/code&gt; folder structure.&lt;/li&gt;
+  &lt;li&gt;Use the &lt;code class=&quot;highlighter-rouge&quot;&gt;./data_prepare/convert_video_to_images.sh&lt;/code&gt; script to decode the &lt;code class=&quot;highlighter-rouge&quot;&gt;UCF101&lt;/code&gt; video files to image files.
+    &lt;ul&gt;
+      &lt;li&gt;run &lt;code class=&quot;highlighter-rouge&quot;&gt;./data_prepare/convert_video_to_images.sh ../UCF101 5&lt;/code&gt; (number &lt;code class=&quot;highlighter-rouge&quot;&gt;5&lt;/code&gt; means the fps rate)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Use the &lt;code class=&quot;highlighter-rouge&quot;&gt;./data_prepare/convert_images_to_list.sh&lt;/code&gt; script to create/update the &lt;code class=&quot;highlighter-rouge&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;train,test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.list&lt;/span&gt;&lt;/code&gt; according to the new &lt;code class=&quot;highlighter-rouge&quot;&gt;UCF101&lt;/code&gt; image folder structure generated from last step (from images to files).
+    &lt;ul&gt;
+      &lt;li&gt;run &lt;code class=&quot;highlighter-rouge&quot;&gt;./data_prepare/convert_images_to_list.sh .../UCF101 4&lt;/code&gt;, this will update the &lt;code class=&quot;highlighter-rouge&quot;&gt;test.list&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;train.list&lt;/code&gt; files (number &lt;code class=&quot;highlighter-rouge&quot;&gt;4&lt;/code&gt; means the ratio of test and train data is 1/4)&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;train.list&lt;/code&gt;:
+  &lt;code class=&quot;highlighter-rouge&quot;&gt;
+  database/ucf101/train/ApplyEyeMakeup/v_ApplyEyeMakeup_g01_c01 0
+  database/ucf101/train/ApplyEyeMakeup/v_ApplyEyeMakeup_g01_c02 0
+  database/ucf101/train/ApplyEyeMakeup/v_ApplyEyeMakeup_g01_c03 0
+  database/ucf101/train/ApplyLipstick/v_ApplyLipstick_g01_c01 1
+  database/ucf101/train/ApplyLipstick/v_ApplyLipstick_g01_c02 1
+  database/ucf101/train/ApplyLipstick/v_ApplyLipstick_g01_c03 1
+  database/ucf101/train/Archery/v_Archery_g01_c01 2
+  database/ucf101/train/Archery/v_Archery_g01_c02 2
+  database/ucf101/train/Archery/v_Archery_g01_c03 2
+  database/ucf101/train/Archery/v_Archery_g01_c04 2
+  database/ucf101/train/BabyCrawling/v_BabyCrawling_g01_c01 3
+  database/ucf101/train/BabyCrawling/v_BabyCrawling_g01_c02 3
+  database/ucf101/train/BabyCrawling/v_BabyCrawling_g01_c03 3
+  database/ucf101/train/BabyCrawling/v_BabyCrawling_g01_c04 3
+  database/ucf101/train/BalanceBeam/v_BalanceBeam_g01_c01 4
+  database/ucf101/train/BalanceBeam/v_BalanceBeam_g01_c02 4
+  database/ucf101/train/BalanceBeam/v_BalanceBeam_g01_c03 4
+  database/ucf101/train/BalanceBeam/v_BalanceBeam_g01_c04 4
+  ...
+ &lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Copy/Cut the &lt;code class=&quot;highlighter-rouge&quot;&gt;test.list&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;train.list&lt;/code&gt; files to the &lt;code class=&quot;highlighter-rouge&quot;&gt;data_providers&lt;/code&gt; folders.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;step-2-train-or-test-the-model&quot;&gt;Step 2: Train or Test the model&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Train the program&lt;/p&gt;
+
+    &lt;p&gt;python run_dense_net_3d.py –train –test –dataset=MERL&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Check parameter help message&lt;/p&gt;
+
+    &lt;p&gt;python run_dense_net_3d.py –help&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;options&quot;&gt;Options&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;run_dense_net_3d.py&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;train_params_&amp;lt;dataset&amp;gt;&lt;/code&gt; settings
+  &lt;code class=&quot;highlighter-rouge&quot;&gt;
+  'num_classes': 5,               # The number of the classes that this dataset had
+  'batch_size': 10,               # Batch Size When we trian the model
+  'n_epochs': 100,                # The total number of epoch we run the model
+  'crop_size': 64,                # The weight and length of images that we used to trian the model
+  'sequence_length': 16,          # The length of the video clip
+  'overlap_length': 8,            # The overlap of the images when we extract the video clips,
+                                    this should be less than sequence_length
+  'initial_learning_rate': 0.1,
+  'reduce_lr_epoch_1': 50,        # epochs * 0.5
+  'reduce_lr_epoch_2': 75,        # epochs * 0.75
+  'validation_set': True,         # Whether used validation set or not
+  'validation_split': None,       # None or float
+  'shuffle': True,                # None, once_prior_train, every_epoch
+  'normalization': 'by_channels', # None, divide_256, divide_255, by_channels
+ &lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;result&quot;&gt;Result&lt;/h3&gt;
+
+&lt;p&gt;Test results on MERL dataset. Video normalization per channels was used.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Model type&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Depth&lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;MERL&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;DenseNet(&lt;em&gt;k&lt;/em&gt; = 12)&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;20&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;70%&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Approximate training time for models on GeForce GTX TITAN X (12 GB memory):&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;DenseNet(&lt;em&gt;k&lt;/em&gt; = 12, &lt;em&gt;d&lt;/em&gt; = 20) - 25 hrs&lt;/li&gt;
+  &lt;li&gt;DenseNet-BC(&lt;em&gt;k&lt;/em&gt; = 12, &lt;em&gt;d&lt;/em&gt; = 100) - 1 day 18 hrs&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;dependencies&quot;&gt;Dependencies&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Model was tested with Python 3.4.3+ and Python 3.5.2 with and without CUDA.&lt;/li&gt;
+  &lt;li&gt;Model should work as expected with TensorFlow &amp;gt;= 0.10. Tensorflow 1.0 support was included.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Repo supported with requirements file - so the easiest way to install all just run &lt;code class=&quot;highlighter-rouge&quot;&gt;pip install -r requirements.txt&lt;/code&gt;.&lt;/p&gt;</content><author><name>gdf</name></author><category term="tensorflow" /><category term="densenet" /><category term="cnn" /><category term="python" /><summary>Github</summary></entry><entry><title>Setup reactjs for web development</title><link href="http://localhost:4000/setup-react/" rel="alternate" type="text/html" title="Setup reactjs for web development" /><published>2016-12-06T00:00:00-05:00</published><updated>2016-12-06T00:00:00-05:00</updated><id>http://localhost:4000/setup-react</id><content type="html" xml:base="http://localhost:4000/setup-react/">&lt;h1 id=&quot;essential-npm-packages&quot;&gt;Essential NPM Packages&lt;/h1&gt;
 
 &lt;table&gt;
   &lt;thead&gt;
@@ -786,608 +1091,4 @@ new_c = (c * sigmoid(f + self._forget_bias) + sigmoid(i) *
   &lt;li&gt;并察看相应的页面是否返回 &lt;code class=&quot;highlighter-rouge&quot;&gt;HTTP&lt;/code&gt; 状态码 &lt;code class=&quot;highlighter-rouge&quot;&gt;200&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;至此改教程结束&lt;/p&gt;</content><author><name>gdf</name></author><category term="翻译" /><category term="rails" /><category term="rspec" /><summary>参考链接</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/markdown.jpg" /></entry><entry><title>【译】自定义Devise</title><link href="http://localhost:4000/devise-customization/" rel="alternate" type="text/html" title="【译】自定义Devise" /><published>2016-10-12T00:00:00-04:00</published><updated>2016-10-12T00:00:00-04:00</updated><id>http://localhost:4000/devise-customization</id><content type="html" xml:base="http://localhost:4000/devise-customization/">&lt;h2 id=&quot;section&quot;&gt;参考链接&lt;/h2&gt;
-&lt;p&gt;原文&lt;a href=&quot;https://rails.devcamp.com/professional-rails-development-course/application-build/customizing-devise&quot;&gt;链接&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;section-1&quot;&gt;文章正文&lt;/h2&gt;
-
-&lt;h3 id=&quot;devise&quot;&gt;自定义Devise&lt;/h3&gt;
-&lt;p&gt;在这篇文章当中我们将会介绍如何使用&lt;code class=&quot;highlighter-rouge&quot;&gt;devise&lt;/code&gt;的一些自定义功能来满足一些特定的需求，下面列表就是需求列表&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;用户需要有以下属性&lt;code class=&quot;highlighter-rouge&quot;&gt;first_name&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;last_name&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;role&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;username&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;用户的&lt;code class=&quot;highlighter-rouge&quot;&gt;role&lt;/code&gt;属性默认为&lt;code class=&quot;highlighter-rouge&quot;&gt;student&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;用户可以注册&lt;/li&gt;
-  &lt;li&gt;用户可以登录&lt;/li&gt;
-  &lt;li&gt;用户可以删除自己的账号&lt;/li&gt;
-  &lt;li&gt;用户可以编辑自己的账号&lt;/li&gt;
-  &lt;li&gt;用户可以修改自己的&lt;code class=&quot;highlighter-rouge&quot;&gt;role&lt;/code&gt;属性&lt;/li&gt;
-  &lt;li&gt;用户的&lt;code class=&quot;highlighter-rouge&quot;&gt;username&lt;/code&gt;是一个子域名(&lt;code class=&quot;highlighter-rouge&quot;&gt;subdomain&lt;/code&gt;)&lt;/li&gt;
-  &lt;li&gt;用户的&lt;code class=&quot;highlighter-rouge&quot;&gt;username&lt;/code&gt;是唯一的&lt;/li&gt;
-  &lt;li&gt;用户的&lt;code class=&quot;highlighter-rouge&quot;&gt;username&lt;/code&gt;不可以含有特殊的字符&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;用户必须要填写&lt;code class=&quot;highlighter-rouge&quot;&gt;first_name&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;last_name&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;role&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;username&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;假设我们已经将&lt;code class=&quot;highlighter-rouge&quot;&gt;first_name&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;last_name&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;role&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;username&lt;/code&gt;添加到&lt;code class=&quot;highlighter-rouge&quot;&gt;users&lt;/code&gt;的表中。我们还需要添加一些新的参数，有一个需要注意的地方是，如果我们想要添加一些&lt;code class=&quot;highlighter-rouge&quot;&gt;Devise&lt;/code&gt;中没有内置的参数，我们需要将这个参数添加到strong parameters当中，这样Rails才知道这些参数是有用的。&lt;/p&gt;
-
-&lt;p&gt;让我们从写一些&lt;code class=&quot;highlighter-rouge&quot;&gt;specs&lt;/code&gt;测试开始，如果没有使用任何的自定义的区域（field），那么我们一般来说不需要测试&lt;code class=&quot;highlighter-rouge&quot;&gt;Devise&lt;/code&gt;因为&lt;code class=&quot;highlighter-rouge&quot;&gt;Devise&lt;/code&gt;本身就有非常完善的测试。但是当我们需要添加一些自定义的行为的时候，那么我们自定义的这些行为就需要进行测试。首先创建一个新的文件&lt;code class=&quot;highlighter-rouge&quot;&gt;user_spec.rb&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# spec/features/user_spec.rb&lt;/span&gt;
-
-&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'rails_helper'&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;describe&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'user navigation'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;describe&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'creation'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'can register with full set of user attributes'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;visit&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_user_registration_path&lt;/span&gt;
-
-      &lt;span class=&quot;n&quot;&gt;fill_in&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'user[email]'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;with: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;test@test.com&quot;&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;fill_in&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'user[password]'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;with: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;password&quot;&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;fill_in&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'user[password_confirmation]'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;with: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;password&quot;&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;fill_in&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'user[first_name]'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;with: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Jon&quot;&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;fill_in&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'user[last_name]'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;with: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Snow&quot;&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;fill_in&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'user[username]'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;with: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;watcheronthewall&quot;&lt;/span&gt;
-
-      &lt;span class=&quot;n&quot;&gt;click_on&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Sign up&quot;&lt;/span&gt;
-
-      &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;page&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;have_content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Welcome&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;运行测试&lt;code class=&quot;highlighter-rouge&quot;&gt;rspec spec/features/user_spec.rb&lt;/code&gt;将会出现以下的错误&lt;code class=&quot;highlighter-rouge&quot;&gt;Capybara::ElementNotFound: Unable to find field &quot;user[first_name]&quot;&lt;/code&gt;。这个错误是因为我们还没有添加相应的自定义区域（field），现在让我们在registration的模版（template）当中添加我们自定义的区域。&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;!--&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;views&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;devise&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;registrations&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;html&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;erb&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&amp;gt;&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Sign&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;up&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/h2&amp;gt;
-
-&amp;lt;%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %&amp;gt;
-  &amp;lt;%= devise_error_messages! %&amp;gt;
-
-  &amp;lt;div class=&quot;field&quot;&amp;gt;
-    &amp;lt;%= f.label :email %&amp;gt;&amp;lt;br /&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;%= f.email_field :email, autofocus: true %&amp;gt;
-  &amp;lt;/div&amp;gt;
-
-  &amp;lt;div class=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;field&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;%= f.label :username %&amp;gt;&amp;lt;br /&amp;gt;
-    &amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;text_field&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:username&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/div&amp;gt;
-
-  &amp;lt;div class=&quot;field&quot;&amp;gt;
-    &amp;lt;%= f.label :first_name %&amp;gt;&amp;lt;br /&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;%= f.text_field :first_name %&amp;gt;
-  &amp;lt;/div&amp;gt;
-
-  &amp;lt;div class=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;field&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;%= f.label :last_name %&amp;gt;&amp;lt;br /&amp;gt;
-    &amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;text_field&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:last_name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/div&amp;gt;
-
-  &amp;lt;div class=&quot;field&quot;&amp;gt;
-    &amp;lt;%= f.label :password %&amp;gt;
-    &amp;lt;% if @minimum_password_length %&amp;gt;
-    &amp;lt;em&amp;gt;(&amp;lt;%= @minimum_password_length %&amp;gt; characters minimum)&amp;lt;/em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;% end &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;br&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/&amp;gt;
-    &amp;lt;%= f.password_field :password, autocomplete: &quot;off&quot; %&amp;gt;
-  &amp;lt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-
-  &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;field&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;%= f.label :password_confirmation %&amp;gt;&amp;lt;br /&amp;gt;
-    &amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;password_field&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:password_confirmation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;autocomplete: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;off&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/div&amp;gt;
-
-  &amp;lt;div class=&quot;actions&quot;&amp;gt;
-    &amp;lt;%= f.submit &quot;Sign up&quot; %&amp;gt;
-  &amp;lt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;% end &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&amp;gt;&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;%= render &quot;devise/shared/links&quot; %&amp;gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;现在让我们将新属性添加到strong parameters当中。创建一个新的控制器&lt;code class=&quot;highlighter-rouge&quot;&gt;registrations_controller.rb&lt;/code&gt;：&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# app/controllers/registrations_controller.rb&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;RegistrationsController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Devise&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;RegistrationsController&lt;/span&gt;
-
-  &lt;span class=&quot;kp&quot;&gt;private&lt;/span&gt;
-
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;sign_up_params&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;permit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:first_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:last_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:password_confirmation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:username&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;account_update_params&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;permit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:first_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:last_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:password_confirmation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:current_password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:username&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;这个将会拓展默认的&lt;code class=&quot;highlighter-rouge&quot;&gt;Devise&lt;/code&gt;控制器，然后添加一些新的自定义的属性，我们将会在我们的注册的表中使用到这些属性。最后我们需要修改路由（route）文件&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# config/routes.rb&lt;/span&gt;
-
-&lt;span class=&quot;no&quot;&gt;Rails&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;application&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;routes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;draw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;devise_for&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:users&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;controllers: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;registrations: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'registrations'&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;root&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;to: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'static#home'&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;让我们再次运行测试&lt;code class=&quot;highlighter-rouge&quot;&gt;rspec&lt;/code&gt;时，所有的测试将会通过。这时我们可以开启服务器&lt;code class=&quot;highlighter-rouge&quot;&gt;rails s&lt;/code&gt;然后使用浏览器访问页面&lt;code class=&quot;highlighter-rouge&quot;&gt;localhost:3000/users/sign_up&lt;/code&gt;，将会看到新的区域。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/devise_custom_params_form.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-&lt;p&gt;&lt;strong&gt;用户的role属性默认值为student&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;用户的role属性应该由系统控制，用户将无法做出任何的更改。让我们来通过修改rails生成（&lt;code class=&quot;highlighter-rouge&quot;&gt;rails generate model User&lt;/code&gt; ）的&lt;code class=&quot;highlighter-rouge&quot;&gt;user_spec.rb&lt;/code&gt;文件来添加这个功能的测试：&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# spec/models/user_spec.rb&lt;/span&gt;
-
-&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'rails_helper'&lt;/span&gt;
-
-&lt;span class=&quot;no&quot;&gt;RSpec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;describe&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;type: :model&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;describe&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'creation'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;before&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-      &lt;span class=&quot;vi&quot;&gt;@user&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;email: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;test@test.com&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;password: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;password&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;password_confirmation: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;password&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;first_name: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Jon&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;last_name: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Snow&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;username: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;watcheronthewall&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'should be able to be created if valid'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;be_valid&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'should have a default role of: student'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;role&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'student'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;这里面有两个测试，其中一个测试将会正常通过因为我们知道&lt;code class=&quot;highlighter-rouge&quot;&gt;User&lt;/code&gt;将会被成功创建，第二个测试将会失败，因为这个测试是来检查&lt;code class=&quot;highlighter-rouge&quot;&gt;User&lt;/code&gt;默认的&lt;code class=&quot;highlighter-rouge&quot;&gt;role&lt;/code&gt;是否为&lt;code class=&quot;highlighter-rouge&quot;&gt;Student&lt;/code&gt;。运行&lt;code class=&quot;highlighter-rouge&quot;&gt;rspec spec/models&lt;/code&gt;，我们将会发现以下的错误：&lt;code class=&quot;highlighter-rouge&quot;&gt;NoMethodError: undefined methodrole' for #User:0x007fd2b09991e0&lt;/code&gt;。下面让我们来创建一个迁移文件来修复这个错误：&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;rails&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;migration&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;add_role_to_users&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;role&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:string&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;当我们运行了&lt;code class=&quot;highlighter-rouge&quot;&gt;rake db:migrate&lt;/code&gt;之后，将会添加一个&lt;code class=&quot;highlighter-rouge&quot;&gt;role&lt;/code&gt;属性到&lt;code class=&quot;highlighter-rouge&quot;&gt;User&lt;/code&gt;的数据库当中，现在我们重新运行测试&lt;code class=&quot;highlighter-rouge&quot;&gt;rspec spec/models&lt;/code&gt;，我们将会获得一个不同的错误&lt;code class=&quot;highlighter-rouge&quot;&gt;expected: &quot;student&quot;, got: nil&lt;/code&gt;。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/1475505387332.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;现在让我们添加一个回调函数到&lt;code class=&quot;highlighter-rouge&quot;&gt;user.rb&lt;/code&gt;当中，来默认创建用户的&lt;code class=&quot;highlighter-rouge&quot;&gt;role&lt;/code&gt;属性&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# app/models/user.rb&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Base&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;devise&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:database_authenticatable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:registerable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-         &lt;span class=&quot;ss&quot;&gt;:recoverable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:rememberable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:trackable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:validatable&lt;/span&gt;
-
-  &lt;span class=&quot;n&quot;&gt;after_initialize&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:set_defaults&lt;/span&gt;
-
-  &lt;span class=&quot;kp&quot;&gt;private&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;set_defaults&lt;/span&gt;
-      &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;role&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'student'&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;after_initialize&lt;/code&gt;是一个回调函数，这个函数将会在&lt;code class=&quot;highlighter-rouge&quot;&gt;User&lt;/code&gt;模型初始化的时候被调用。这里我们不使用&lt;code class=&quot;highlighter-rouge&quot;&gt;after_create&lt;/code&gt;的原因是因为&lt;code class=&quot;highlighter-rouge&quot;&gt;after_create&lt;/code&gt;将会复写我们实时修改的信息。&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;set_defaults&lt;/code&gt;是一个自定义的方法，用于设置默认值。&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;self.role ||= 'student'&lt;/code&gt;如果&lt;code class=&quot;highlighter-rouge&quot;&gt;role&lt;/code&gt;的值为&lt;code class=&quot;highlighter-rouge&quot;&gt;nil&lt;/code&gt;则把&lt;code class=&quot;highlighter-rouge&quot;&gt;role&lt;/code&gt;设置为&lt;code class=&quot;highlighter-rouge&quot;&gt;'student'&lt;/code&gt;。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;当我们再次运行&lt;code class=&quot;highlighter-rouge&quot;&gt;rspec&lt;/code&gt;时，所有的测试将会通过。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;现在让我们回到&lt;strong&gt;用户必须有&lt;code class=&quot;highlighter-rouge&quot;&gt;first name&lt;/code&gt;，&lt;code class=&quot;highlighter-rouge&quot;&gt;last name&lt;/code&gt;，&lt;code class=&quot;highlighter-rouge&quot;&gt;role&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;username&lt;/code&gt;&lt;/strong&gt;的这个需求上来。为了实现这个需求，我们需要添加一些&lt;code class=&quot;highlighter-rouge&quot;&gt;validations&lt;/code&gt;到&lt;code class=&quot;highlighter-rouge&quot;&gt;user.rb&lt;/code&gt;文件当中，但是首先让我们添加一些新的&lt;code class=&quot;highlighter-rouge&quot;&gt;rspec&lt;/code&gt;测试：&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# spec/models/user_spec.rb&lt;/span&gt;
-
-&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'rails_helper'&lt;/span&gt;
-
-&lt;span class=&quot;no&quot;&gt;RSpec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;describe&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;type: :model&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;describe&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'creation'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;before&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-      &lt;span class=&quot;vi&quot;&gt;@user&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;email: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;test@test.com&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;password: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;password&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;password_confirmation: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;password&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;first_name: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Jon&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;last_name: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Snow&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;username: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;watcheronthewall&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'should be able to be created if valid'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;be_valid&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'should have a default role of: student'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;role&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'student'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;describe&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'validations'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'should not be valid without a first name'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-        &lt;span class=&quot;vi&quot;&gt;@user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;first_name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;nil&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;be_valid&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-      &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'should not be valid without a last name'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-        &lt;span class=&quot;vi&quot;&gt;@user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;last_name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;nil&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;be_valid&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-      &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'should not be valid without a username'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-        &lt;span class=&quot;vi&quot;&gt;@user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;username&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;nil&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;be_valid&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;运行&lt;code class=&quot;highlighter-rouge&quot;&gt;rspec spec/models&lt;/code&gt;将会给我们三个错误，错误内容为&lt;code class=&quot;highlighter-rouge&quot;&gt;Failure/Error: expect(@user).to_not be_valid&lt;/code&gt;。让我们给我们的&lt;code class=&quot;highlighter-rouge&quot;&gt;user.rb&lt;/code&gt;文件添加以下的&lt;code class=&quot;highlighter-rouge&quot;&gt;validations&lt;/code&gt;：&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# app/models/user.rb&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Base&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;# Include default devise modules. Others available are:&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;# :confirmable, :lockable, :timeoutable and :omniauthable&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;devise&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:database_authenticatable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:registerable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-         &lt;span class=&quot;ss&quot;&gt;:recoverable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:rememberable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:trackable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:validatable&lt;/span&gt;
-
-  &lt;span class=&quot;n&quot;&gt;after_initialize&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:set_defaults&lt;/span&gt;
-
-  &lt;span class=&quot;n&quot;&gt;validates_presence_of&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:first_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:last_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:username&lt;/span&gt;
-
-  &lt;span class=&quot;kp&quot;&gt;private&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;set_defaults&lt;/span&gt;
-      &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;role&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'student'&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;再次运行&lt;code class=&quot;highlighter-rouge&quot;&gt;rspec&lt;/code&gt;将会发现所有的测试都会通过。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;现在让我们回顾一下我们的需求：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;用户需要有以下属性&lt;code class=&quot;highlighter-rouge&quot;&gt;first_name&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;last_name&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;role&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;username&lt;/code&gt; - &lt;strong&gt;完成&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;用户的&lt;code class=&quot;highlighter-rouge&quot;&gt;role&lt;/code&gt;属性默认为&lt;code class=&quot;highlighter-rouge&quot;&gt;student&lt;/code&gt; - &lt;strong&gt;完成&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;用户可以注册 - &lt;strong&gt;devise自动生成&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;用户可以登录 - &lt;strong&gt;devise自动生成&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;用户可以删除自己的账号 - &lt;strong&gt;devise自动生成&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;用户可以编辑自己的账号 - &lt;strong&gt;devise自动生成&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;用户可以修改自己的&lt;code class=&quot;highlighter-rouge&quot;&gt;role&lt;/code&gt;属性 - &lt;strong&gt;完成&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;用户的&lt;code class=&quot;highlighter-rouge&quot;&gt;username&lt;/code&gt;是一个子域名(&lt;code class=&quot;highlighter-rouge&quot;&gt;subdomain&lt;/code&gt;) - &lt;strong&gt;稍后会完成&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;用户的&lt;code class=&quot;highlighter-rouge&quot;&gt;username&lt;/code&gt;是唯一的&lt;/li&gt;
-  &lt;li&gt;用户的&lt;code class=&quot;highlighter-rouge&quot;&gt;username&lt;/code&gt;不可以含有特殊的字符&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;现在让我们来完成需求：&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;用户的&lt;code class=&quot;highlighter-rouge&quot;&gt;username&lt;/code&gt;是唯一的&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;首先让我们来添加一些新的测试到测试文件中来：&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# spec/models/user_spec.rb&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'should ensure that all usernames are unique'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;duplicate_username_user&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;email: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;test2@test.com&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;password: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;password&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;password_confirmation: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;password&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;first_name: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Joni&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;last_name: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Snowy&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;username: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;watcheronthewall&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;duplicate_username_user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;be_valid&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;运行测试我们将会发现以下错误&lt;code class=&quot;highlighter-rouge&quot;&gt;Failure/Error: expect(duplicate_username_user).to_not be_valid&lt;/code&gt;。下一步让我们来更新&lt;code class=&quot;highlighter-rouge&quot;&gt;user.rb&lt;/code&gt;文件：&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# app/models/user.rb&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;validates_uniqueness_of&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:username&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;当我们再次运行&lt;code class=&quot;highlighter-rouge&quot;&gt;rspec&lt;/code&gt;时，所有的测试将会通过。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;现在让我们实现最后的一个需求。&lt;strong&gt;用户的&lt;code class=&quot;highlighter-rouge&quot;&gt;username&lt;/code&gt;不可以含有特殊的字符&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;因为我们的用户名最终将会成为子域名（subdomain），所以用户名中将不能包含任何的特殊字符，类似于&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;amp;*$&amp;amp;*@&lt;/code&gt;。首先我们添加&lt;code class=&quot;highlighter-rouge&quot;&gt;rspec&lt;/code&gt;测试：&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# spec/models/user_spec.rb&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'should ensure that usernames do not allow special characters'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-  &lt;span class=&quot;vi&quot;&gt;@user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;username&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;*#*(@!&quot;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;be_valid&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;运行测试将会给出相应的错误提示消息，现在让我们来修改&lt;code class=&quot;highlighter-rouge&quot;&gt;user.rb&lt;/code&gt;文件：&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# app/models/user.rb&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Base&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;# Include default devise modules. Others available are:&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;# :confirmable, :lockable, :timeoutable and :omniauthable&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;devise&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:database_authenticatable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:registerable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-         &lt;span class=&quot;ss&quot;&gt;:recoverable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:rememberable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:trackable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:validatable&lt;/span&gt;
-
-  &lt;span class=&quot;n&quot;&gt;after_initialize&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:set_defaults&lt;/span&gt;
-
-  &lt;span class=&quot;n&quot;&gt;validates_presence_of&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:first_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:last_name&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;validates&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:username&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;uniqueness: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;presence: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;format: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;with: &lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/\A[a-zA-Z]+([a-zA-Z]|\d)*\Z/&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-  &lt;span class=&quot;kp&quot;&gt;private&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;set_defaults&lt;/span&gt;
-      &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;role&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'student'&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;现在当我们再次运行测试时，所有的测试将会通过。&lt;/p&gt;
-
-&lt;h3 id=&quot;httpsgithubcomrails-campdailysmartytreea795d2b8a40fc742e534f0dae27b8adb956d19d7&quot;&gt;参考&lt;a href=&quot;https://github.com/rails-camp/dailysmarty/tree/a795d2b8a40fc742e534f0dae27b8adb956d19d7&quot;&gt;代码&lt;/a&gt;&lt;/h3&gt;</content><author><name>gdf</name></author><category term="翻译" /><category term="devise" /><category term="rails" /><summary>参考链接
-原文链接</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/markdown.jpg" /></entry><entry><title>【译】Devise的用法</title><link href="http://localhost:4000/devise-usage/" rel="alternate" type="text/html" title="【译】Devise的用法" /><published>2016-10-11T00:00:00-04:00</published><updated>2016-10-11T00:00:00-04:00</updated><id>http://localhost:4000/devise-usage</id><content type="html" xml:base="http://localhost:4000/devise-usage/">&lt;h2 id=&quot;section&quot;&gt;参考链接&lt;/h2&gt;
-&lt;p&gt;原文&lt;a href=&quot;https://rails.devcamp.com/trails/ruby-gem-walkthroughs/campsites/authentication/guides/devise&quot;&gt;链接&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;section-1&quot;&gt;文章正文&lt;/h2&gt;
-
-&lt;h3 id=&quot;devise-&quot;&gt;Devise 能做什么&lt;/h3&gt;
-&lt;p&gt;用户的认证功能对于新的Rails开发者来说是一件非常困难的事情， 而 &lt;code class=&quot;highlighter-rouge&quot;&gt;Devise&lt;/code&gt; 是一个非常全面的用户认证&lt;code class=&quot;highlighter-rouge&quot;&gt;gem&lt;/code&gt;，提供了以下一些重要的功能：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;注册&lt;/li&gt;
-  &lt;li&gt;登录／登出&lt;/li&gt;
-  &lt;li&gt;会话管理（可以知道用户是否登录当他们使用网站的时候）&lt;/li&gt;
-  &lt;li&gt;密码重设&lt;/li&gt;
-  &lt;li&gt;可以自动生成&lt;code class=&quot;highlighter-rouge&quot;&gt;View&lt;/code&gt;模板，便于你用于参考。&lt;/li&gt;
-  &lt;li&gt;可以自动生成模型(model)&lt;/li&gt;
-  &lt;li&gt;可以集成诸如&lt;code class=&quot;highlighter-rouge&quot;&gt;Facebook&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Twitter&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;wechat&lt;/code&gt;等网站的一键登录功能(OAuth2)&lt;/li&gt;
-  &lt;li&gt;…&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;devise&quot;&gt;为什么使用 Devise&lt;/h3&gt;
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Deivse&lt;/code&gt;之所以如此受欢迎的主要原因，是因为它能够很快的帮助开发者建立起很全面的用户的认证系统，并且它非常稳定有专业的人员来做持续的维护工作。
-在安全方面，&lt;code class=&quot;highlighter-rouge&quot;&gt;Devise&lt;/code&gt;也包含了许多重要的功能来保证安全性，它可以自动加密／解密密码，重设密码等。总体来说，它可以很大程度的保证我们用户认证系统的安全性。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-2&quot;&gt;缺点&lt;/h3&gt;
-&lt;p&gt;如果你想要复写&lt;code class=&quot;highlighter-rouge&quot;&gt;Devise&lt;/code&gt;中的一些默认的功能，将会变的非常困难。比如说如果你想让一个用户使用用户名登录而不是邮件登陆，那么这个的难度可能跟你从头创建一个&lt;code class=&quot;highlighter-rouge&quot;&gt;Auth&lt;/code&gt;的系统一样。
-还有当你想要添加自己的参数到&lt;code class=&quot;highlighter-rouge&quot;&gt;Devise&lt;/code&gt;的模块当中时，比如说把&lt;code class=&quot;highlighter-rouge&quot;&gt;role&lt;/code&gt;属性添加到&lt;code class=&quot;highlighter-rouge&quot;&gt;users&lt;/code&gt;模型当中，我们就需要来修改&lt;code class=&quot;highlighter-rouge&quot;&gt;ApplicationController&lt;/code&gt;来吧&lt;code class=&quot;highlighter-rouge&quot;&gt;role&lt;/code&gt;属性添加到白名单当中，这会感觉很奇怪因为正常来说我们应该修改的是对应模型本身的&lt;code class=&quot;highlighter-rouge&quot;&gt;controller&lt;/code&gt;。&lt;/p&gt;
-
-&lt;h3 id=&quot;devise-1&quot;&gt;实现／Devise实例&lt;/h3&gt;
-&lt;p&gt;让我们现在开始集成&lt;code class=&quot;highlighter-rouge&quot;&gt;Devise&lt;/code&gt;到我们的项目当中，首先我们需要到&lt;a href=&quot;https://rubygems.org/gems/devise/versions/3.5.3&quot;&gt;rubygems.org&lt;/a&gt;中获取最新的稳定版本，然后将相应的&lt;code class=&quot;highlighter-rouge&quot;&gt;gem&lt;/code&gt;添加到我们项目的&lt;code class=&quot;highlighter-rouge&quot;&gt;Gemfile&lt;/code&gt;当中。&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'devise'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'~&amp;gt; 3.5'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&amp;gt;= 3.5.3'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;然后我们运行&lt;code class=&quot;highlighter-rouge&quot;&gt;bundle install&lt;/code&gt;来安装相应的文件，安装完成之后，我们可以运行生成器(generator):&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rails generate devise:install
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;这将会创建以下两个文件&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;create  config/initializers/devise.rb
-create  config/locales/devise.en.yml
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;在我们开始做其他任何事情之间，我们需要首先打开文件&lt;code class=&quot;highlighter-rouge&quot;&gt;config/initializers/devise.rb&lt;/code&gt;然后将文件当中的默认邮件的属性修改成我们对应的邮件地址：&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;mailer_sender&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'please-change-me-at-config-initializers-devise@example.com'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;修改为&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;mailer_sender&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'no-reply@gdf.name'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;然后我们可以查看&lt;code class=&quot;highlighter-rouge&quot;&gt;Devise&lt;/code&gt;在终端中打印出来的帮助文档&lt;/p&gt;
-
-&lt;div class=&quot;language-tex highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Some setup you must do manually if you haven't yet:
-
-  1. Ensure you have defined default url options in your environments files. Here
-     is an example of default&lt;span class=&quot;p&quot;&gt;_&lt;/span&gt;url&lt;span class=&quot;p&quot;&gt;_&lt;/span&gt;options appropriate for a development environment
-     in config/environments/development.rb:
-
-       config.action&lt;span class=&quot;p&quot;&gt;_&lt;/span&gt;mailer.default&lt;span class=&quot;p&quot;&gt;_&lt;/span&gt;url&lt;span class=&quot;p&quot;&gt;_&lt;/span&gt;options = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; host: 'localhost', port: 3000 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-     In production, :host should be set to the actual host of your application.
-
-  2. Ensure you have defined root&lt;span class=&quot;p&quot;&gt;_&lt;/span&gt;url to *something* in your config/routes.rb.
-     For example:
-
-       root to: &quot;home#index&quot;
-
-  3. Ensure you have flash messages in app/views/layouts/application.html.erb.
-     For example:
-
-       &amp;lt;p class=&quot;notice&quot;&amp;gt;&amp;lt;&lt;span class=&quot;c&quot;&gt;%= notice %&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-       &amp;lt;p class=&quot;alert&quot;&amp;gt;&amp;lt;&lt;span class=&quot;c&quot;&gt;%= alert %&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-
-  4. If you are deploying on Heroku with Rails 3.2 only, you may want to set:
-
-       config.assets.initialize&lt;span class=&quot;p&quot;&gt;_&lt;/span&gt;on&lt;span class=&quot;p&quot;&gt;_&lt;/span&gt;precompile = false
-
-     On config/application.rb forcing your application to not access the DB
-     or load models when precompiling your assets.
-
-  5. You can copy Devise views (for customization) to your app by running:
-
-       rails g devise:views 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;我们可以根据上面的提示来一步一步的完成&lt;code class=&quot;highlighter-rouge&quot;&gt;Devise&lt;/code&gt;的配置&lt;/p&gt;
-
-&lt;p&gt;1.添加一个新的配置选项到&lt;code class=&quot;highlighter-rouge&quot;&gt;config/environments/development.rb&lt;/code&gt;配置文件当中（如果是一个生产服务器那么你将会需要修改文件&lt;code class=&quot;highlighter-rouge&quot;&gt;config/environments/production.rb&lt;/code&gt;）。在&lt;code class=&quot;highlighter-rouge&quot;&gt;configure&lt;/code&gt;的代码块中，添加如下的代码：&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# config/environments/development.rb&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;action_mailer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;default_url_options&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;host: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'localhost'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;port: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3000&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;2.请确认你有一个&lt;code class=&quot;highlighter-rouge&quot;&gt;homepage&lt;/code&gt;， 如果没有的话你需要首先修改文件&lt;code class=&quot;highlighter-rouge&quot;&gt;config/routes.rb&lt;/code&gt;如下：&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# config/routes.rb&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;to: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'pages#home'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;其次你需要创建一个控制器文件&lt;code class=&quot;highlighter-rouge&quot;&gt;app/controllers/pages_controllers.rb&lt;/code&gt;然后添加以下代码：&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# app/controllers/pages_controller.rb&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PagesController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ApplicationController&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;home&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;3.创建一个&lt;code class=&quot;highlighter-rouge&quot;&gt;pages&lt;/code&gt;目录然后创建文件&lt;code class=&quot;highlighter-rouge&quot;&gt;app/views/pages/home.html.erb&lt;/code&gt;，并将以下的代码写入到文件&lt;code class=&quot;highlighter-rouge&quot;&gt;application.html.erb&lt;/code&gt;当中（在&lt;code class=&quot;highlighter-rouge&quot;&gt;yield&lt;/code&gt;代码的上方）:&lt;/p&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;%#= app/views/layouts/application.html.erb %&amp;gt;
-
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;p&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;notice&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;%= notice %&amp;gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;p&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;alert&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;%= alert %&amp;gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;4.因为我们现在的&lt;code class=&quot;highlighter-rouge&quot;&gt;Rails&lt;/code&gt;版本远超3.2，所以我们不需要做这一步的操作&lt;/p&gt;
-
-&lt;p&gt;5.使用&lt;code class=&quot;highlighter-rouge&quot;&gt;Deivse&lt;/code&gt;generator创建视图（view）控件，在终端中运行命令&lt;code class=&quot;highlighter-rouge&quot;&gt;rails g devise:views&lt;/code&gt;将会创建如下的文件：&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;app/views/devise/shared/_links.html.erb
-app/views/devise/confirmations/new.html.erb
-app/views/devise/passwords/edit.html.erb
-app/views/devise/passwords/new.html.erb
-app/views/devise/registrations/edit.html.erb
-app/views/devise/registrations/new.html.erb
-app/views/devise/sessions/new.html.erb
-app/views/devise/unlocks/new.html.erb
-app/views/devise/mailer/confirmation_instructions.html.erb
-app/views/devise/mailer/password_change.html.erb
-app/views/devise/mailer/reset_password_instructions.html.erb
-app/views/devise/mailer/unlock_instructions.html.erb
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;上面的这些文件的创建将会给我们足够的代码来实现下列的功能：用户注册， 用户登录，用户编辑账户详情，用户重设密码和一些可以选择的功能，例如确认账号。&lt;/p&gt;
-
-&lt;p&gt;现在我们已经将所有的视图文件配置完毕，我们可以开始创建模型（model）文件，在终端中运行命令&lt;code class=&quot;highlighter-rouge&quot;&gt;rails g devise User&lt;/code&gt;。这行代码将会创建一个模型（model）文件和一个迁移（migration）文件。迁移文件如下：&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# db/migrate/20160115010323_devise_create_users.rb&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DeviseCreateUsers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Migration&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;change&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;create_table&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:users&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
-      &lt;span class=&quot;c1&quot;&gt;## Database authenticatable&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;              &lt;span class=&quot;ss&quot;&gt;null: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;default: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:encrypted_password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;null: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;default: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;
-
-      &lt;span class=&quot;c1&quot;&gt;## Recoverable&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;string&lt;/span&gt;   &lt;span class=&quot;ss&quot;&gt;:reset_password_token&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;datetime&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:reset_password_sent_at&lt;/span&gt;
-
-      &lt;span class=&quot;c1&quot;&gt;## Rememberable&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;datetime&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:remember_created_at&lt;/span&gt;
-
-      &lt;span class=&quot;c1&quot;&gt;## Trackable&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;integer&lt;/span&gt;  &lt;span class=&quot;ss&quot;&gt;:sign_in_count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;default: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;null: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;false&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;datetime&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:current_sign_in_at&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;datetime&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:last_sign_in_at&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;string&lt;/span&gt;   &lt;span class=&quot;ss&quot;&gt;:current_sign_in_ip&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;string&lt;/span&gt;   &lt;span class=&quot;ss&quot;&gt;:last_sign_in_ip&lt;/span&gt;
-
-      &lt;span class=&quot;c1&quot;&gt;## Confirmable&lt;/span&gt;
-      &lt;span class=&quot;c1&quot;&gt;# t.string   :confirmation_token&lt;/span&gt;
-      &lt;span class=&quot;c1&quot;&gt;# t.datetime :confirmed_at&lt;/span&gt;
-      &lt;span class=&quot;c1&quot;&gt;# t.datetime :confirmation_sent_at&lt;/span&gt;
-      &lt;span class=&quot;c1&quot;&gt;# t.string   :unconfirmed_email # Only if using reconfirmable&lt;/span&gt;
-
-      &lt;span class=&quot;c1&quot;&gt;## Lockable&lt;/span&gt;
-      &lt;span class=&quot;c1&quot;&gt;# t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts&lt;/span&gt;
-      &lt;span class=&quot;c1&quot;&gt;# t.string   :unlock_token # Only if unlock strategy is :email or :both&lt;/span&gt;
-      &lt;span class=&quot;c1&quot;&gt;# t.datetime :locked_at&lt;/span&gt;
-
-
-      &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;timestamps&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;null: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;false&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;add_index&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:users&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;                &lt;span class=&quot;ss&quot;&gt;unique: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;add_index&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:users&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:reset_password_token&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;unique: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;# add_index :users, :confirmation_token,   unique: true&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;# add_index :users, :unlock_token,         unique: true&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;从上述的文件当中，我们可以看到&lt;code class=&quot;highlighter-rouge&quot;&gt;Devise&lt;/code&gt;给我们的标准属性有些什么，例如&lt;code class=&quot;highlighter-rouge&quot;&gt;email&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;password&lt;/code&gt;，&lt;code class=&quot;highlighter-rouge&quot;&gt;Deivse&lt;/code&gt;也提供了相应的属性来跟踪记录用户的登录次数，还有许多其他的功能。默认情况下&lt;code class=&quot;highlighter-rouge&quot;&gt;Devise&lt;/code&gt;注释掉了&lt;code class=&quot;highlighter-rouge&quot;&gt;confirmable&lt;/code&gt;属性，如果你取消了注释，那么用户将会收到邮件来激活相应的账号才可以使用。这是一个很有用的功能，但是很多情况下确认的邮件将会发送到用户的垃圾收件箱当中并且会有一定的延迟。&lt;/p&gt;
-
-&lt;p&gt;现在让我们在终端中运行命令&lt;code class=&quot;highlighter-rouge&quot;&gt;rake db:migrate&lt;/code&gt;这将会在数据库中创建&lt;code class=&quot;highlighter-rouge&quot;&gt;user&lt;/code&gt;列表。最后使用命令&lt;code class=&quot;highlighter-rouge&quot;&gt;rails s&lt;/code&gt;运行服务器，在浏览器中输入地址&lt;code class=&quot;highlighter-rouge&quot;&gt;http://localhost:3000/users/sign_up&lt;/code&gt;你就可以注册账号然后使用注册好的账号访问&lt;code class=&quot;highlighter-rouge&quot;&gt;http://localhost:3000/users/sign_in&lt;/code&gt;来登录系统。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-3&quot;&gt;有趣的功能&lt;/h3&gt;
-
-&lt;p&gt;1.了解用户是否登录
-将如下的代码添加到&lt;code class=&quot;highlighter-rouge&quot;&gt;homepage&lt;/code&gt;当中：&lt;/p&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;%#= app/views/pages/home.html.erb %&amp;gt;
-
-&lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;% if current_user %&amp;gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;I'm signed in&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;% else %&amp;gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;I'm not signed in&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;% end %&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;首先登陆系统，你将会看到消息&lt;code class=&quot;highlighter-rouge&quot;&gt;I'm signed in&lt;/code&gt;，然后打开一个匿名的浏览器窗口（chrome打开的方法为 MAC: &lt;code class=&quot;highlighter-rouge&quot;&gt;cmd+shift+n&lt;/code&gt; Windows: &lt;code class=&quot;highlighter-rouge&quot;&gt;ctrl+shift+n&lt;/code&gt;）访问主页你将会看到提示&lt;code class=&quot;highlighter-rouge&quot;&gt;I'm not signed in&lt;/code&gt;。这是因为&lt;code class=&quot;highlighter-rouge&quot;&gt;current_user&lt;/code&gt;这个属性是&lt;code class=&quot;highlighter-rouge&quot;&gt;Devise&lt;/code&gt;的内置功能来查看一个用户是否登录。&lt;/p&gt;
-
-&lt;p&gt;2.强制用户登录&lt;/p&gt;
-
-&lt;p&gt;当我们想让强制用户登录之后才能查看某些页面时，我们可以使用方法&lt;code class=&quot;highlighter-rouge&quot;&gt;authenticate_user!&lt;/code&gt;来保证用户必须登录了之后才能查看页面。在本项目中我们可以修改&lt;code class=&quot;highlighter-rouge&quot;&gt;PagesControllers&lt;/code&gt;：&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# app/controllers/pages_controller.rb&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PagesController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ApplicationController&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;home&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;authenticate_user!&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;现在如果未登录的用户访问主页的时候将会自动跳转到登录界面，并且提示&lt;code class=&quot;highlighter-rouge&quot;&gt;You need to sign in or sign up before continuing.&lt;/code&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;section-4&quot;&gt;项目代码&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/rails-camp/gem-review-devise&quot;&gt;链接&lt;/a&gt;&lt;/p&gt;</content><author><name>gdf</name></author><category term="翻译" /><category term="devise" /><category term="rails" /><summary>参考链接
-原文链接</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/markdown.jpg" /></entry><entry><title>Computer vision annotation program</title><link href="http://localhost:4000/cv-annotation/" rel="alternate" type="text/html" title="Computer vision annotation program" /><published>2016-06-18T00:00:00-04:00</published><updated>2016-06-18T00:00:00-04:00</updated><id>http://localhost:4000/cv-annotation</id><content type="html" xml:base="http://localhost:4000/cv-annotation/">&lt;p&gt;&lt;img src=&quot;/assets/images/projects/cv-annotation.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;github&quot;&gt;Github&lt;/h1&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/asolis/Annotate&quot;&gt;link&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;contributions&quot;&gt;Contributions&lt;/h1&gt;
-&lt;ol&gt;
-  &lt;li&gt;add the action annotation function to the program&lt;/li&gt;
-  &lt;li&gt;refactor the tracker function in the program&lt;/li&gt;
-  &lt;li&gt;create the XML annotation file import and export function&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>gdf</name></author><category term="c++" /><category term="opencv" /><summary></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/projects/cv-annotation.png" /></entry></feed>
+&lt;p&gt;至此改教程结束&lt;/p&gt;</content><author><name>gdf</name></author><category term="翻译" /><category term="rails" /><category term="rspec" /><summary>参考链接</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/markdown.jpg" /></entry></feed>
