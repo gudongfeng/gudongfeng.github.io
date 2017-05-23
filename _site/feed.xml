@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-05-22T22:00:41-04:00</updated><id>http://localhost:4000/</id><title>Dongfeng Gu</title><subtitle>A blog about technology and stuff related</subtitle><entry><title>使用你的苹果电脑来搭建一个VPN网络</title><link href="http://localhost:4000/setup-vpn/" rel="alternate" type="text/html" title="使用你的苹果电脑来搭建一个VPN网络" /><published>2017-05-22T00:00:00-04:00</published><updated>2017-05-22T00:00:00-04:00</updated><id>http://localhost:4000/setup-vpn</id><content type="html" xml:base="http://localhost:4000/setup-vpn/">&lt;h2 id=&quot;section&quot;&gt;需要准备的东西&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-05-22T22:10:33-04:00</updated><id>http://localhost:4000/</id><title>Dongfeng Gu</title><subtitle>A blog about technology and stuff related</subtitle><entry><title>使用你的苹果电脑来搭建一个VPN网络</title><link href="http://localhost:4000/setup-vpn/" rel="alternate" type="text/html" title="使用你的苹果电脑来搭建一个VPN网络" /><published>2017-05-22T00:00:00-04:00</published><updated>2017-05-22T00:00:00-04:00</updated><id>http://localhost:4000/setup-vpn</id><content type="html" xml:base="http://localhost:4000/setup-vpn/">&lt;h2 id=&quot;section&quot;&gt;需要准备的东西&lt;/h2&gt;
 
 &lt;ol&gt;
   &lt;li&gt;一台苹果电脑&lt;/li&gt;
@@ -14,11 +14,11 @@
     &lt;ul&gt;
       &lt;li&gt;在&lt;a href=&quot;https://freedns.afraid.org/&quot;&gt;freeDNS&lt;/a&gt;中注册账号并激活邮箱&lt;/li&gt;
       &lt;li&gt;登陆账号之后在左侧的导航栏选择 Dynamic DNS&lt;/li&gt;
-      &lt;li&gt;添加一个新的 Dynamic DNS 记录&lt;/li&gt;
-      &lt;li&gt;Type: A&lt;/li&gt;
-      &lt;li&gt;Subdomain: (任意)&lt;/li&gt;
-      &lt;li&gt;Domain: (从列表中任意选择一个)&lt;/li&gt;
-      &lt;li&gt;Destination: 自动检测当前的IP地&lt;/li&gt;
+      &lt;li&gt;添加一个新的 Dynamic DNS 记录 &lt;br /&gt;
+ &amp;gt; Type: A &lt;br /&gt;
+ &amp;gt; Subdomain: (任意) &lt;br /&gt;
+ &amp;gt; Domain: (从列表中任意选择一个) &lt;br /&gt;
+ &amp;gt; Destination: 自动检测当前的IP地 &lt;br /&gt;&lt;/li&gt;
       &lt;li&gt;保存设置, 并记录下你填写和选择的域名(Subdomain.Domain)信息&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
