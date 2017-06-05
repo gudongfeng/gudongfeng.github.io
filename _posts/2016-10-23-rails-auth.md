@@ -33,7 +33,7 @@ description: Rails 的用户认证
 
 我编写过很长一段时间的程序。到目前为止，只有两个应用程序我是从头开始创建用户认证系统而不是使用现有的用户认证系统库，类似于`Deivse`。而且这两个例外的应用程序还是因为它有特定的需求，需要集成微软的`ActiveDirectory`认证引擎，所以才我从头创建用户的认证系统。
 
-我个人的观点认为我们应该使用像`Devise`这样，经过充分测试并且会有人员长期维护的库来创建一些功能，而不是从头开始创建。在接下来的教程当中，我将会介绍如何集成`Devise`的每一个步骤，但我并不会介绍`Devise`这个`gem`本身的内容，我已经写过一篇博客[Devise的用法](http://blog.gdf.name/devise-usage/)用来介绍有关`Devise`本身的内容，读者可以点进链接进行参。
+我个人的观点认为我们应该使用像`Devise`这样，经过充分测试并且会有人员长期维护的库来创建一些功能，而不是从头开始创建。在接下来的教程当中，我将会介绍如何集成`Devise`的每一个步骤，但我并不会介绍`Devise`这个`gem`本身的内容，我已经写过一篇博客[Devise的用法](http://gdf.name/devise-usage/)用来介绍有关`Devise`本身的内容，读者可以点进链接进行参。
 
 ### 实现用户认证
 
@@ -83,7 +83,7 @@ config.mailer_sender = 'team@dailysmarty.com'
 config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 ```
 
-我们可以跳过对主页面的配置因为我们已经在博客[Rails程序配置](http://blog.gdf.name/rails-rspec-initial/)/[英文](https://rails.devcamp.com/trails/professional-rails-development-course/campsites/application-build/guides/rails-app-configuration)完成了这个步骤。现在让我们来添加警告`alerts`的页面。我将不会把警告的页面添加到主页面当中，因为在有一些界面当中我们可能不想要实现警告的界面，或者说我们只想将警告的界面渲染到页面的特定位置。所以让我们在`view`目录下创建一个`shared`目录然后添加一个局部（partial）文件叫做`_alerts.html.erb`：
+我们可以跳过对主页面的配置因为我们已经在博客[Rails程序配置](http://gdf.name/rails-rspec-initial/)/[英文](https://rails.devcamp.com/trails/professional-rails-development-course/campsites/application-build/guides/rails-app-configuration)完成了这个步骤。现在让我们来添加警告`alerts`的页面。我将不会把警告的页面添加到主页面当中，因为在有一些界面当中我们可能不想要实现警告的界面，或者说我们只想将警告的界面渲染到页面的特定位置。所以让我们在`view`目录下创建一个`shared`目录然后添加一个局部（partial）文件叫做`_alerts.html.erb`：
 
 ```ruby
 <%#= app/views/shared/_alerts.html.erb %>
@@ -154,7 +154,7 @@ add_index "users", ["email"], name: "index_users_on_email", unique: true, using:
 add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 ```
 
-以上的教程将会给我们生成足够的代码来让用户实现注册，登录和一些其他的标准的有关用户认证的操作。在下一个博客当中我们将会讲解如何[自定义Devise](http://blog.gdf.name/devise-customization/)。
+以上的教程将会给我们生成足够的代码来让用户实现注册，登录和一些其他的标准的有关用户认证的操作。在下一个博客当中我们将会讲解如何[自定义Devise](http://gdf.name/devise-customization/)。
 
 ### 资源
 

@@ -1,5 +1,6 @@
-_site/
+_site
 npm-debug.log
 .vscode
 *.DS_Store
 .ruby-version
+.sass-cache
