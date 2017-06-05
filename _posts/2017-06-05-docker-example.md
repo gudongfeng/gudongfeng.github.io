@@ -6,7 +6,6 @@ headerImage: false
 tag:
 - docker
 blog: true
-hidden: true
 author: gdf
 description: "Create an appication with 6 containers"
 ---
