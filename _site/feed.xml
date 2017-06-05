@@ -1,4 +1,261 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-05-22T22:10:33-04:00</updated><id>http://localhost:4000/</id><title>Dongfeng Gu</title><subtitle>A blog about technology and stuff related</subtitle><entry><title>使用你的苹果电脑来搭建一个VPN网络</title><link href="http://localhost:4000/setup-vpn/" rel="alternate" type="text/html" title="使用你的苹果电脑来搭建一个VPN网络" /><published>2017-05-22T00:00:00-04:00</published><updated>2017-05-22T00:00:00-04:00</updated><id>http://localhost:4000/setup-vpn</id><content type="html" xml:base="http://localhost:4000/setup-vpn/">&lt;h2 id=&quot;section&quot;&gt;需要准备的东西&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-06-05T15:13:51-04:00</updated><id>http://localhost:4000/</id><title>Dongfeng Gu</title><subtitle>A blog about technology and stuff related</subtitle><entry><title>Docker example: application hub with 6 containers</title><link href="http://localhost:4000/docker-example/" rel="alternate" type="text/html" title="Docker example: application hub with 6 containers" /><published>2017-06-05T00:00:00-04:00</published><updated>2017-06-05T00:00:00-04:00</updated><id>http://localhost:4000/docker-example</id><content type="html" xml:base="http://localhost:4000/docker-example/">&lt;h2 id=&quot;the-basic-structure-of-these-docker-hub&quot;&gt;The basic structure of these docker hub&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/docker-6.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;comand-need-to-run&quot;&gt;Comand need to run&lt;/h2&gt;
+
+&lt;h3 id=&quot;initialize-the-all-the-container-node&quot;&gt;1. Initialize the all the container node&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# 1. pull the docker images
+docker pull ubuntu
+docker pull django
+docker pull haproxy
+docker pull redis
+
+# Note: start the nodes in the following sequence 
+# redis-master -&amp;gt; redis-slave -&amp;gt; APP -&amp;gt; HAProxy
+
+# 2. start the redis container
+docker run -it --name redis-master redis /bin/bash
+docker run -it --name redis-slave1 --link redis-master:master redis /bin/bash
+docker run -it --name redis-slave2 --link redis-master:master redis /bin/bash
+
+# 3. start the Django container
+docker run -it --name APP1 --link redis-master:db -v ~/Projects/Django/App1:/usr/src/app django /bin/bash
+docker run -it --name APP2 --link redis-master:db -v ~/Projects/Django/App2:/usr/src/app django /bin/bash
+
+# 4. start the HAProxy container
+docker run -it --name HAProxy --link APP1:APP1 --link APP2:APP2 -p 6301:6301 -v ~/Projects/HAProxy:/tmp haproxy /bin/bash
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;configure-redis-master-container&quot;&gt;2. Configure redis-master container&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# get the container id
+docker ps
+
+# inspect the mounted volume of the redis-master container
+docker inspect --format &quot;{{ .Volumes }}&quot; &amp;lt;redis-master-id&amp;gt;
+
+# go to the corresponding folder in your host machine
+cd /var/lib/docker/vfs/dir/&amp;lt;id&amp;gt;
+cp &amp;lt;your-own-redis-dir&amp;gt;/redis.conf redis.conf
+
+# edit the redis configuration file
+vi redis.conf
+# modify the following settings
+# daemonize yes
+# pidfile /var/run/redis.pid
+
+# login your container
+docker attach &amp;lt;redis-master-id&amp;gt;
+
+# copy the redis configuration file to the executing folder
+# and run the redis server
+cd /data
+cp redis.conf /usr/local/bin
+cd /usr/local/bin
+redis-server redis.conf
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;configure-the-redis-slave-containers--do-the-following-command-for-both-containers-&quot;&gt;3. Configure the redis-slave containers ( do the following command for both containers )&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# inspect the mounted volume of both redis-slave containers
+docker inspect --format &quot;{{ .Volumes }}&quot; &amp;lt;redis-slave-id&amp;gt;
+
+# go to the corresponding folder in your host machine
+cd /var/lib/docker/vfs/dir/&amp;lt;id&amp;gt;
+cp &amp;lt;your-own-redis-dir&amp;gt;/redis.conf redis.conf
+vi redis.conf
+
+# change the following settings
+# daemonize yes
+# pidfile /var/run/redis.pid
+# slaveof master 6379
+
+# login your container
+docker attach &amp;lt;redis-slave-id&amp;gt;
+
+# copy the redis configuration file to the executing folder
+# and run the redis server
+cd /data
+cp redis.conf /usr/local/bin
+cd /usr/local/bin
+redis-server redis.conf
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;redis-container-test&quot;&gt;4. Redis container test&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# login redis-master container
+docker attach &amp;lt;redis-master-id&amp;gt;
+
+# login redis client
+redis-cli
+
+# store one data
+... &amp;gt; set master testdata
+OK
+... &amp;gt; get master
+&quot;testdata&quot;
+
+# login redis-slave container
+docker attach &amp;lt;redis-slave-id&amp;gt;
+
+# login redis client
+redis-cli
+... &amp;gt; get master
+&quot;testdata&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;configure-django--configure-for-both-apps-&quot;&gt;5. Configure Django ( configure for both apps )&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# login the Django container
+docker attach &amp;lt;app1-id&amp;gt;
+
+# install python redis support
+pip install redis
+
+# build the app
+cd /usr/src/app
+mkdir dockerweb
+django-admin.py startproject redisweb
+cd redisweb/
+python manage.py startapp helloworld
+
+# exit the container
+&amp;lt;Ctrl + D&amp;gt;
+
+# go to the link folder in your host machine
+cd ~/Projects/Django/App1
+
+# change the vide file of helloworld application
+cd dockerweb/redisweb/helloworld/
+sudo su
+vi views.py
+
+######################################################
+# views.py
+
+# from django.shortcuts import render
+# from django.http import HttpResponse
+
+# import redis
+
+# def hello(request):
+#   str=redis.__file__
+#   str+=&quot;&amp;lt;br&amp;gt;&quot;
+#   r = redis.Redis(host='db', port=6379, db=0)
+#   info = r.info()
+#   str+=(&quot;Set Hi &amp;lt;br&amp;gt;&quot;)
+#   r.set(&quot;Hi&quot;, &quot;HelloWorld-APP1&quot;)
+#   str+=(&quot;Get Hi: %s &amp;lt;br&amp;gt;&quot;&quot; % r.get('Hi'))
+#   str+=(&quot;Redis Info: &amp;lt;br&amp;gt;&quot;)
+#   str+=(&quot;Key: Info Value&quot;)
+#   for key in info:
+#     str+=(&quot;%s: %s &amp;lt;br&amp;gt;&quot; % (key, info[key]))
+#   return HttpResponse(str)
+#
+######################################################
+
+
+# edit the redisweb setting file
+cd ../redisweb/
+vi setting.py
+
+######################################################
+# add the following to the INSTALLED_APPS section
+#
+# INSTALLED_APPS = (
+#   'django.contrib.admin',
+#   'django.contrib.auth',
+#   'django.contrib.contenttypes',
+#   'django.contrib.sessions',
+#   'django.contrib.messages',
+#   'django.contrib.staticfiles',
+#   'helloworld',
+# )
+######################################################
+
+# edit the urls.py file in the project
+vi urls.py
+
+######################################################
+# from django.conf.urls import patterns, include, url
+# from django.contrib import admin
+# from helloworld.views import hello
+
+# urlpatterns = patterns('',
+#   url(r'^admin/', include(admin.site.urls)),
+#   url(r'^helloworld$', hello),
+# )
+######################################################
+
+# enter the app container
+docker attach &amp;lt;app1-id&amp;gt;
+
+# complete the project
+cd /usr/src/app/dockerweb/redisweb
+python manage.py makemigrations
+python manage.py migrate
+python manage.py syncdb
+# start the server, note that app2 should have port 8002
+python manage.py runserver 0.0.0.0:8001
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;configure-the-haproxy-container&quot;&gt;6. Configure the HAProxy container&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# enter the folder in your host
+cd ~/Projects/HAProxy
+vi haproxy.cfg
+
+######################################################
+# global
+#   log 127.0.0.1 local0
+#   maxconn 4096  # maximum connection
+#   chroot /usr/local/sbin  # change the current work directory
+#   daemon        # run the program as daemon
+#   nbproc 4      # number of HAProxy instances
+#   pidfile /usr/local/sbin/haproxy.pid # pid file location
+# defaults
+#   log 127.0.0.1 local3
+#   mode http
+#   option dontlognull
+#   option redispatch
+#   retries 2
+#   maxconn 2000
+#   balance roundrobin
+
+#   timeout connect 5000ms
+#   timeout client 50000ms
+#   timeout server 50000ms
+#   listen redis_proxy 0.0.0.0:6301
+#     stats enable
+#     stats uri /haproxy-stats
+#       server APP1 APP1:8001 check inter 2000 rise 2 fall 5 # your APP1 container
+#       server APP2 APP2:8002 check inter 2000 rise 2 fall 5 # your APP1 container
+######################################################
+
+# login the HAProxy container
+docker attach &amp;lt;haproxy-id&amp;gt;
+cd /tmp
+cp haproxy.cfg /usr/local/sbin/
+cd /usr/local/sbin/
+haproxy -f haproxy.cfg
+
+# note that we need to kill the haproxy process if 
+# we make some changes in the configuration file
+apt-get install psmisc
+killall haproxy
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Access the http://&lt;your-ip-address&gt;:6301/helloworld&lt;/your-ip-address&gt;&lt;/p&gt;
+
+&lt;p&gt;Check the status of haproxy by http://&lt;your-ip-address&gt;:6301/haproxy-stats&lt;/your-ip-address&gt;&lt;/p&gt;</content><author><name>gdf</name></author><category term="docker" /><summary>The basic structure of these docker hub</summary></entry><entry><title>使用你的苹果电脑来搭建一个VPN网络</title><link href="http://localhost:4000/setup-vpn/" rel="alternate" type="text/html" title="使用你的苹果电脑来搭建一个VPN网络" /><published>2017-05-22T00:00:00-04:00</published><updated>2017-05-22T00:00:00-04:00</updated><id>http://localhost:4000/setup-vpn</id><content type="html" xml:base="http://localhost:4000/setup-vpn/">&lt;h2 id=&quot;section&quot;&gt;需要准备的东西&lt;/h2&gt;
 
 &lt;ol&gt;
   &lt;li&gt;一台苹果电脑&lt;/li&gt;
@@ -918,177 +1175,4 @@ new_c = (c * sigmoid(f + self._forget_bias) + sigmoid(i) *
 &lt;h2 id=&quot;section-4&quot;&gt;结束语&lt;/h2&gt;
 
 &lt;hr /&gt;
-&lt;p&gt;至此我们应该对LSTM有了一定程度上的理解，欢迎读者们在下方评论区留言发表修改意见。谢谢！&lt;/p&gt;</content><author><name>gdf</name></author><category term="lstm" /><category term="rnn" /><category term="tensorflow" /><category term="python" /><summary>目录</summary></entry><entry><title>【译】Rails测试：如何给Rails项目初始化Rspec</title><link href="http://localhost:4000/rails-rspec-initial/" rel="alternate" type="text/html" title="【译】Rails测试：如何给Rails项目初始化Rspec" /><published>2016-10-12T00:00:00-04:00</published><updated>2016-10-12T00:00:00-04:00</updated><id>http://localhost:4000/rails-rspec-initial</id><content type="html" xml:base="http://localhost:4000/rails-rspec-initial/">&lt;h2 id=&quot;section&quot;&gt;参考链接&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://rails.devcamp.com/professional-rails-development-course/application-build/rails-app-configuration&quot;&gt;link&lt;/a&gt;（本文为参考链接的非官方中文翻译版本，并非完全对照翻译，减少了原文中不必要的内容）&lt;/p&gt;
-
-&lt;h2 id=&quot;section-1&quot;&gt;说明&lt;/h2&gt;
-&lt;p&gt;这片文章将会一步一步来教大家如何初始化rspec将rspec集成到Rails的项目当中&lt;/p&gt;
-
-&lt;h2 id=&quot;section-2&quot;&gt;文章正文：&lt;/h2&gt;
-&lt;p&gt;要想充分的使用rspec，除了主要的 &lt;code class=&quot;highlighter-rouge&quot;&gt;rspec-rails&lt;/code&gt; gem，我们还需要使用到以下三个gems：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Capybara&lt;/code&gt; － 这个gem主要是用来写集成测试（integration tests），它可以模拟用户的行为来自动点击浏览器中的链接，填写浏览器中的表格等功能。&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Database Cleaner&lt;/code&gt; －这个gem可以自动清除我们的test数据库，来避免一些来自rspec可能的潜在错误，例如我们想要创建唯一性的数据时，因为数据库中已经存在了相应的数据，导致该数据无法创建。&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Factory Girl&lt;/code&gt; －用户创建sample数据，便于我们在rspec的测试中使用它们&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;首先让我们把相应的gem添加到&lt;code class=&quot;highlighter-rouge&quot;&gt;Gemfile&lt;/code&gt;当中（因为上述的四个gems全部都是用于测试，所以我们可以把gems添加到 &lt;code class=&quot;highlighter-rouge&quot;&gt;:development&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;:test&lt;/code&gt; 的组当中），参考一下的&lt;code class=&quot;highlighter-rouge&quot;&gt;Gemfile&lt;/code&gt;文件：&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# Gemfile&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;source&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'https://rubygems.org'&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'rails'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'4.2.5'&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'pg'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'~&amp;gt; 0.15'&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'sass-rails'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'~&amp;gt; 5.0'&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'uglifier'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&amp;gt;= 1.3.0'&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'coffee-rails'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'~&amp;gt; 4.1.0'&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'jquery-rails'&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'turbolinks'&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'jbuilder'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'~&amp;gt; 2.0'&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'sdoc'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'~&amp;gt; 0.4.0'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;group: :doc&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;group&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:development&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:test&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'byebug'&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'rspec-rails'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'~&amp;gt; 3.0'&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'capybara'&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'database_cleaner'&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;group&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:development&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'web-console'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'~&amp;gt; 2.0'&lt;/span&gt;
-
-  &lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'spring'&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;参考 &lt;code class=&quot;highlighter-rouge&quot;&gt;:development&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;:test&lt;/code&gt; 模块&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'rspec-rails'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'~&amp;gt; 3.0'&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'capybara'&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'database_cleaner'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;通过运行命令 &lt;code class=&quot;highlighter-rouge&quot;&gt;bundle&lt;/code&gt; 安装需要的gem之后，我们使用rspec的命令来安装 &lt;code class=&quot;highlighter-rouge&quot;&gt;RSpec&lt;/code&gt; 。&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rails generate rspec:install
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;这个命令将会创建相应的rspec配置文件&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;create&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;rspec&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;create&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;spec_helper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;rb&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;create&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rails_helper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;rb&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;下一步我们将需要配置 &lt;code class=&quot;highlighter-rouge&quot;&gt;rails_helper.rb&lt;/code&gt; 文件来使 &lt;code class=&quot;highlighter-rouge&quot;&gt;capybara&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;DatabaseCleaner&lt;/code&gt; 运作：&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# spec/rails_helper.rb&lt;/span&gt;
-
-&lt;span class=&quot;no&quot;&gt;ENV&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'RAILS_ENV'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'test'&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;expand_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'../../config/environment'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;__FILE__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;nb&quot;&gt;abort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;The Rails environment is running in production mode!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Rails&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;production?&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'spec_helper'&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'rspec/rails'&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'capybara/rails'&lt;/span&gt;
-
-&lt;span class=&quot;no&quot;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Migration&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;maintain_test_schema!&lt;/span&gt;
-
-&lt;span class=&quot;no&quot;&gt;RSpec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;configure&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;fixture_path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Rails&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/spec/fixtures&quot;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;use_transactional_fixtures&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;false&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;before&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:suite&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;DatabaseCleaner&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;clean_with&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:truncation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;before&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:each&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;DatabaseCleaner&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;strategy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:transaction&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;before&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:each&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:js&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;DatabaseCleaner&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;strategy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:truncation&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;before&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:each&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;DatabaseCleaner&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;start&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;after&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:each&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;DatabaseCleaner&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;clean&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;infer_spec_type_from_file_location!&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;filter_rails_from_backtrace!&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;以上的配置文件对比默认的配置文件作出了一下的修改：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;添加了 &lt;code class=&quot;highlighter-rouge&quot;&gt;capybara/rails&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;将 &lt;code class=&quot;highlighter-rouge&quot;&gt;use_transactional_fixtures&lt;/code&gt; 改变为 &lt;code class=&quot;highlighter-rouge&quot;&gt;false&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;添加了一些 &lt;code class=&quot;highlighter-rouge&quot;&gt;DatabaseCleaner&lt;/code&gt; 的配置&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;至此我们已经完成了相应的配置，下面让我们写一个测试文件来测试我们可以访问主页。创建一个目录 &lt;code class=&quot;highlighter-rouge&quot;&gt;features&lt;/code&gt; 和文件 &lt;code class=&quot;highlighter-rouge&quot;&gt;static&lt;/code&gt; ：&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# spec/features/static_spec.rb&lt;/span&gt;
-
-&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'rails_helper'&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;describe&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'navigate'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;describe&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'homepage'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'can be reached successfully'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;visit&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;root_path&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;page&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;status_code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;运行命令 &lt;code class=&quot;highlighter-rouge&quot;&gt;rspec&lt;/code&gt; 将会出现错误 &lt;code class=&quot;highlighter-rouge&quot;&gt;NameError: undefined local variable or method root_path' for #RSpec::ExampleGroups::Navigate::Homepage:0x007fa73f05eef0&lt;/code&gt;:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/rails-rspec-1.png&quot; alt=&quot;Alt Text&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;我们可以通过修改 &lt;code class=&quot;highlighter-rouge&quot;&gt;routes.rb&lt;/code&gt; 文件来修复这个错误：&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# config/routes.rb&lt;/span&gt;
-
-&lt;span class=&quot;no&quot;&gt;Rails&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;application&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;routes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;draw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;root&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;to: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'static#home'&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;再次运行 &lt;code class=&quot;highlighter-rouge&quot;&gt;rspec&lt;/code&gt; 命令，我们将会遇到另外一个错误因为我们没有创建 &lt;code class=&quot;highlighter-rouge&quot;&gt;static&lt;/code&gt; 控制器（controller），然后错误提示还是会说无法识别 &lt;code class=&quot;highlighter-rouge&quot;&gt;root_path&lt;/code&gt;，所以让我们手动创建 &lt;code class=&quot;highlighter-rouge&quot;&gt;static&lt;/code&gt; 控制器：&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# app/controllers/static_controller.rb&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;StaticController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ApplicationController&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;现在我们再次运行 &lt;code class=&quot;highlighter-rouge&quot;&gt;rspec&lt;/code&gt; 命令，我们将会获得另外一个错误消息就是 &lt;code class=&quot;highlighter-rouge&quot;&gt;AbstractController::ActionNotFound: The action 'home' could not be found for StaticController&lt;/code&gt; ：&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/rails-rspec-2.png&quot; alt=&quot;Alt Text&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;我们可以通过给添加 &lt;code class=&quot;highlighter-rouge&quot;&gt;home&lt;/code&gt; index：&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# app/controllers/static_controller.rb&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;StaticController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ApplicationController&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;home&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;当我们再次运行 &lt;code class=&quot;highlighter-rouge&quot;&gt;rspec&lt;/code&gt; 命令， 我们将会遇到错误 &lt;code class=&quot;highlighter-rouge&quot;&gt;ActionView::MissingTemplate: Missing template static/home&lt;/code&gt; 这是因为我们没有创建模板文件，现在让我们在 &lt;code class=&quot;highlighter-rouge&quot;&gt;app/views/static&lt;/code&gt; 目录下创建文件 &lt;code class=&quot;highlighter-rouge&quot;&gt;app/views/static/home.html.erb&lt;/code&gt; 。&lt;/p&gt;
-
-&lt;p&gt;现在当我们运行命令 &lt;code class=&quot;highlighter-rouge&quot;&gt;rspec&lt;/code&gt; 时，测试通过：&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/rails-rspec-3.png&quot; alt=&quot;Alt Text&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;在测试文件 &lt;code class=&quot;highlighter-rouge&quot;&gt;spec/features/static_spec.rb&lt;/code&gt; 中&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Capybara&lt;/code&gt; 将会开启一个虚拟的浏览器会话&lt;/li&gt;
-  &lt;li&gt;它将会访问地址 &lt;code class=&quot;highlighter-rouge&quot;&gt;root_path&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;并察看相应的页面是否返回 &lt;code class=&quot;highlighter-rouge&quot;&gt;HTTP&lt;/code&gt; 状态码 &lt;code class=&quot;highlighter-rouge&quot;&gt;200&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;至此改教程结束&lt;/p&gt;</content><author><name>gdf</name></author><category term="翻译" /><category term="rails" /><category term="rspec" /><summary>参考链接</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/markdown.jpg" /></entry></feed>
+&lt;p&gt;至此我们应该对LSTM有了一定程度上的理解，欢迎读者们在下方评论区留言发表修改意见。谢谢！&lt;/p&gt;</content><author><name>gdf</name></author><category term="lstm" /><category term="rnn" /><category term="tensorflow" /><category term="python" /><summary>目录</summary></entry></feed>
