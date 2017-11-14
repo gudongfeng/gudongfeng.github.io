@@ -35,6 +35,7 @@ description: "The beginner guide for installing Jisti-Meet on ubuntu 16.04 with 
 [http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html)
 ## B. Step to install the Jitsi Meet
 Follow the instruction on [Jitsi Meet quick install guide](https://github.com/jitsi/jitsi-meet/blob/master/doc/quick-install.md) or just type the following
+
 ```
 sudo su
 echo 'deb https://download.jitsi.org stable/' >> /etc/apt/sources.list.d/jitsi-stable.list
@@ -42,6 +43,7 @@ wget -qO -  https://download.jitsi.org/jitsi-key.gpg.key | apt-key add -
 apt-get update
 apt-get -y install jitsi-meet
 ```
+
 > Note: During installation, you will have to input your hostname and choose the way to installing ssl cerificate. For your hostname, if you link your domain in the previous step 6, enter your domain name (ex: talk.gdf.name). Otherwise, enter the public DNS of your EC2 instance or just the IPv4 public IP address. For ssl cerification，if you know nothing about this, just select the self cerfication option.
 
 ## C. (Option) Certificate you self-signed SSL
