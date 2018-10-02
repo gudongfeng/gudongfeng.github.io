@@ -32,8 +32,9 @@ and my main area of interest is action detection.
 - (Ruby) [Wechat Starter](https://github.com/goofansu/wechat-starter)
 - (Python) [C3D-tensorflow](https://github.com/hx173149/C3D-tensorflow)
 
+## Funny experiment
+- First lambda & route53 & api gateway & s3 simple page (link: [gudongfeng.me](gudongfeng.me))
+
 ## Resume
 
-<object data="{{ site.url }}/assets/pdfs/Resume.pdf" type="application/pdf" width="100%" height="800px"></object>
-
-[Download]({{ site.url }}/assets/pdfs/Resume.pdf)
+> Please send me an email for resume. :)
