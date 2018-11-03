@@ -33,7 +33,7 @@ and my main area of interest is action detection.
 - (Python) [C3D-tensorflow](https://github.com/hx173149/C3D-tensorflow)
 
 ## Funny experiment
-- First lambda & route53 & api gateway & s3 simple page (link: [gudongfeng.me](gudongfeng.me))
+- First lambda & route53 & api gateway & s3 simple page (link: [gudongfeng.me](http://gudongfeng.me))
 
 ## Resume
 
