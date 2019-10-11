@@ -23,6 +23,6 @@ In this project, the system uses the Canadian electoral system which is based on
 
 # Github
 
-[Desktop](https://github.com/frankgu/voting-system)
+[Desktop](https://github.com/gudongfeng/voting-system)
 
-[Android](https://github.com/frankgu/voting-system-android-client)
+[Android](https://github.com/gudongfeng/voting-system-android-client)

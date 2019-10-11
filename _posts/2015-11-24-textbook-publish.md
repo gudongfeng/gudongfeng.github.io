@@ -20,4 +20,4 @@ externalLink: false
 cuTPS (Carleton University Textbook Publishing System), is a system designed to facilitate the buying of course material online to students. These course materials include textbooks, individual chapters of the textbooks offered, and individual sections of the chapters.
 
 # Github
-[link](https://github.com/frankgu/CText)
+[link](https://github.com/gudongfeng/CText)

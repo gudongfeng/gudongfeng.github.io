@@ -23,11 +23,11 @@ This project is a Ruby on Rails API server example for a tutoring APP (have not 
 
 # Github
 
-[link](https://github.com/frankgu/ROR_api_server_example)
+[link](https://github.com/gudongfeng/ROR_api_server_example)
 
 # Document
 
-[WIKI](https://github.com/frankgu/ROR_api_server_example/wiki)
+[WIKI](https://github.com/gudongfeng/ROR_api_server_example/wiki)
 
 # API Document
 

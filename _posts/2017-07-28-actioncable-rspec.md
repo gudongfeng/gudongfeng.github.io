@@ -17,4 +17,4 @@ Notes:
 
 
 ## Example codes
-<script src="https://gist.github.com/frankgu/7547f23446cfdcaf1aad66ea6cbc3971.js"></script>
+<script src="https://gist.github.com/gudongfeng/7547f23446cfdcaf1aad66ea6cbc3971.js"></script>

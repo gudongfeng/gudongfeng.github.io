@@ -19,7 +19,7 @@ externalLink: false
 
 # Github
 
-[link](https://github.com/frankgu/rails_authentication_system)
+[link](https://github.com/gudongfeng/rails_authentication_system)
 
 # Pictures
 

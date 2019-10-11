@@ -21,4 +21,4 @@ externalLink: false
 
 # Github
 
-[link](https://github.com/frankgu/King-new)
+[link](https://github.com/gudongfeng/King-new)

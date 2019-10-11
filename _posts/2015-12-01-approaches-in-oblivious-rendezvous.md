@@ -20,4 +20,4 @@ externalLink: false
 Rendezvous is defined as the process by which two or more cognitive radios attempt to arrive on the same frequency band (channel) to begin transferring data. Most of the previous works assume all users have the same label for the same channel, but this may not fit well with the distributed systems such as Cognitive Radio Network (CRN) where there is no dedicated control channel. Therefore, Oblivious rendezvous is proposed to allow different users have different labels for the same frequency band, which applies well on the CRN. This project implement some algorithm for oblivious rendezvous.
 
 # Github
-[link](https://github.com/frankgu/Oblivious-Rendezvous-apporaches)
+[link](https://github.com/gudongfeng/Oblivious-Rendezvous-apporaches)

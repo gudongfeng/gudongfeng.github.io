@@ -20,7 +20,7 @@ externalLink: false
 
 # Github
 
-[link](https://github.com/frankgu/tensorflow_video_classification_LSTM)
+[link](https://github.com/gudongfeng/tensorflow_video_classification_LSTM)
 
 
 # Network structure
