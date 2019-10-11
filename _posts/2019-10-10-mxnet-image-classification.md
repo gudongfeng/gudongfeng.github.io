@@ -11,6 +11,8 @@ blog: true
 author: gdf
 description: "This tutorial tell you how to use mxnet to setup pretrain image classification model"
 ---
+
+Jupyter Notebook can be found in here: [NoteBook](/assets/notebooks/MXNet-CV.ipynb)
 ```python
 # Part 1: Download the dataset (cifar10 for experiment purpose)
 from keras.datasets import cifar10
