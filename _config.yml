@@ -1,6 +1,6 @@
 # main text of home
 name: Dongfeng Gu
-bio: I am the Technical Co-founder of Talk With Sam! Ltd and a master student at University of Ottawa, Canada. 
+bio: I am a Software Development Engineer II at Amazon. I like to spend my spare time to create various content (Blog, Vlog, DIY).
 
 # twitter summary info
 description: A blog about technology and stuff related
@@ -11,7 +11,6 @@ external-image: false
 picture: assets/images/profile.png
 
 url: http://blog.gdf.name
-# your url: http://USERNAME.github.io
 
 permalink: /:title/
 
@@ -35,7 +34,7 @@ twitter: gdf1992803
 # instagram: myinstagram
 # pinterest: mypinterest
 linkedin: dongfenggu
-# youtube: myyoutube
+youtube: channel/UCIHqbvCeeqJEQwXmtPLWrog
 # spotify: myspotify
 github: gudongfeng 
 # medium: medium
@@ -45,7 +44,7 @@ email: gudongfeng@outlook.com
 authors:
     gdf:
         name: Dongfeng Gu
-        bio: Master student at University of Ottawa
+        bio: Software Development Engineer II at Amazon
         external-image: false
         picture: assets/images/profile.png
         linkedin: dongfenggu
