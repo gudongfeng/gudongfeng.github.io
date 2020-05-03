@@ -110,14 +110,14 @@ Inside this step, we will setup the program for Waveshare 2.7inch E-Ink display 
 - Open terminal: Edit the start up script
   - `sudo vi /etc/rc.local`
   - Append the following text before the `exit 0` line
-  ```
-  exec 1>/tmp/rc.local.log 2>&1  # send stdout and stderr from rc.local to a log file
-  set -x
+    ```
+    exec 1>/tmp/rc.local.log 2>&1  # send stdout and stderr from rc.local to a log file
+    set -x
 
-  sudo -u pi node /home/pi/smartcontroller/kasacontroller/kasaControl.js &
-  sleep 5
-  sudo -u pi python /home/pi/smartcontroller/waveshareControl/RaspberryPi&JetsonNano/python/deviceInfo.py &
-  ```
+    sudo -u pi node /home/pi/smartcontroller/kasacontroller/kasaControl.js &
+    sleep 5
+    sudo -u pi python /home/pi/smartcontroller/waveshareControl/RaspberryPi&JetsonNano/python/deviceInfo.py &
+    ```
   - `sudo reboot`
 
 After Setup 5, you should be able to use it to control your kasa devices. 
