@@ -13,7 +13,7 @@ description: "Raspberry pi smart controller for tp-link Kasa devices"
 ---
 
 ## What to expcet after this post?
-{% youtube lXhoo_O_KDQ 600 400 %}
+<iframe width="640" height="480" src="//www.youtube.com/embed/lXhoo_O_KDQ" frameborder="0" allowfullscreen></iframe>
 ![image](/assets/images/posts/waveshare.jpg)
 
 ## Hardware that you needs
