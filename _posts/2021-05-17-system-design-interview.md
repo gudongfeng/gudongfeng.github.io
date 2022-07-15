@@ -13,14 +13,17 @@ description: "Procedures to follow when interview system design question"
 
 Steps to solve system design interview questions
 
-- Step 1: Clarify the function requirement
-    - Functional requirement, what functions do we want to achieve
-    - Non-Functional requirement, performance of the system. Ex, Latency requirement, robustness, scalability, resilience, extendability
-    - Other requirements
+- Step 1: Clarify the function requirements
+    - Functional requirement, What specific features are we going to build?
+    - Non-Functional requirement, 
+        - How many users does the product have?
+        - What are performance requirement for the system? Ex, Latency requirement, robustness, scalability, resilience, extendability
+    - What is the company’s technology stack? What dependencies we could use?
 - Step 2: Ask about the capacity estimation and constraints
-    - Estimate traffic (Read and Write TPS)
-    - Potential Disk usage, Potential Memory usage. 
-    - Estimate Bandwidth 
+    - Make assumptions. (MAU, DAU, usage rate) 
+    - Estimate traffic volume (Read and Write TPS)
+    - Estimate data size
+    - Estimate bandwidth 
 - Step 3: Design System APIs. 
     - What are the Parameters for the APIs
     - What are the APIs we want to support (CURD)
@@ -49,3 +52,4 @@ Steps to solve system design interview questions
     - Schedule service to clean up data once in a while
 - Step 10: Security and permissions request
     - Who can have permission to access certain resources. 
+- Step 11: Monitoring, alarms, metrics, dashboards, and operations 
